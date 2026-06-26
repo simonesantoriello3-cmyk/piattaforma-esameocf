@@ -57,12 +57,12 @@ export default function Registrazione() {
       <main className="flex-1 flex items-center justify-center px-4">
         <div className="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-md text-center">
           <div className="text-5xl mb-4">📧</div>
-          <h1 className="text-2xl font-bold text-emerald-900 mb-2">Controlla la tua email!</h1>
+          <h1 className="text-2xl font-bold text-blue-900 mb-2">Controlla la tua email!</h1>
           <p className="text-gray-500 text-sm mb-6">
             Abbiamo inviato un link di conferma a <strong>{email}</strong>.
             Clicca il link per attivare il tuo account e poi accedi.
           </p>
-          <Link href="/login" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors inline-block text-sm">
+          <Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl transition-colors inline-block text-sm">
             Vai al login →
           </Link>
         </div>
@@ -76,7 +76,7 @@ export default function Registrazione() {
         <div className="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-md">
 
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-emerald-900">FormazioneRUI</h1>
+            <h1 className="text-2xl font-bold text-blue-900">FormazioneOCF</h1>
             <p className="text-gray-500 text-sm mt-2">Crea il tuo account</p>
           </div>
 
@@ -95,7 +95,7 @@ export default function Registrazione() {
               value={nome}
               onChange={(e) => setNome(e.target.value)}
               placeholder="Mario Rossi"
-              className={`w-full border rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-emerald-500 transition-colors ${!nome.trim() && errore ? 'border-red-300' : 'border-gray-200'}`}
+              className={`w-full border rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-blue-500 transition-colors ${!nome.trim() && errore ? 'border-red-300' : 'border-gray-200'}`}
             />
           </div>
 
@@ -108,7 +108,7 @@ export default function Registrazione() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="tua@email.com"
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-emerald-500 transition-colors"
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
             />
           </div>
 
@@ -121,21 +121,21 @@ export default function Registrazione() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Minimo 6 caratteri"
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-emerald-500 transition-colors"
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-blue-500 transition-colors"
             />
           </div>
 
           <button
             onClick={handleRegistrazione}
             disabled={caricamento}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50"
           >
             {caricamento ? 'Registrazione in corso...' : 'Crea account'}
           </button>
 
           <p className="text-center text-sm text-gray-500 mt-6">
             Hai già un account?{' '}
-            <Link href="/login" className="text-emerald-600 hover:text-emerald-700 font-medium">
+            <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
               Accedi
             </Link>
           </p>

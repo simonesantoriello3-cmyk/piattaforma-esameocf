@@ -39,11 +39,11 @@ export default function Login() {
       <main className="flex-1 flex items-center justify-center px-4">
         <div className="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-emerald-900">Recupera password</h1>
+            <h1 className="text-2xl font-bold text-blue-900">Recupera password</h1>
             <p className="text-gray-500 text-sm mt-2">Ti invieremo un link per reimpostare la password</p>
           </div>
           {recuperoInviato ? (
-            <div className="bg-emerald-50 text-emerald-700 text-sm px-4 py-3 rounded-lg text-center">
+            <div className="bg-blue-50 text-blue-700 text-sm px-4 py-3 rounded-lg text-center">
               ✓ Email inviata! Controlla la tua casella di posta.
             </div>
           ) : (
@@ -55,20 +55,20 @@ export default function Login() {
                   value={recuperoEmail}
                   onChange={e => setRecuperoEmail(e.target.value)}
                   placeholder="tua@email.com"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 />
               </div>
               <button
                 onClick={handleRecupero}
                 disabled={caricamento || !recuperoEmail}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50"
               >
                 {caricamento ? 'Invio in corso...' : 'Invia link di recupero'}
               </button>
             </>
           )}
           <p className="text-center text-sm text-gray-500 mt-6">
-            <button onClick={() => setRecupero(false)} className="text-emerald-600 hover:text-emerald-700">
+            <button onClick={() => setRecupero(false)} className="text-blue-600 hover:text-blue-700">
               ← Torna al login
             </button>
           </p>
@@ -83,7 +83,7 @@ export default function Login() {
       <div className="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-md">
 
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-emerald-900">FormazioneRUI</h1>
+          <h1 className="text-2xl font-bold text-blue-900">FormazioneOCF</h1>
           <p className="text-gray-500 text-sm mt-2">Accedi al tuo account</p>
         </div>
 
@@ -100,7 +100,7 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="tua@email.com"
-            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
+            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           />
         </div>
 
@@ -111,27 +111,27 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
+            className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           />
         </div>
 
         <button
           onClick={handleLogin}
           disabled={caricamento}
-          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors disabled:opacity-50"
         >
           {caricamento ? 'Accesso in corso...' : 'Accedi'}
         </button>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Non hai un account?{' '}
-          <a href="/registrazione" className="text-emerald-600 hover:text-emerald-700">
+          <a href="/registrazione" className="text-blue-600 hover:text-blue-700">
             Registrati
           </a>
         </p>
 
         <p className="text-center text-sm text-gray-500 mt-3">
-          <button onClick={() => setRecupero(true)} className="text-emerald-600 hover:text-emerald-700">
+          <button onClick={() => setRecupero(true)} className="text-blue-600 hover:text-blue-700">
             Password dimenticata?
           </button>
         </p>
