@@ -51,15 +51,15 @@ export default function Navbar() {
   if (pathname?.startsWith('/quiz')) return null
 
   return (
-    <nav className="bg-emerald-50 border-b border-emerald-100 px-6 py-4 relative">
+    <nav className="bg-blue-50 border-b border-blue-100 px-6 py-4 relative">
       <div className="max-w-5xl mx-auto flex items-center justify-between">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1">
           <div className="w-5 h-7 bg-emerald-500 rounded-sm"></div>
           <div className="w-5 h-7 bg-emerald-800 rounded-sm" style={{ marginLeft: '2px' }}></div>
-          <span className="text-emerald-600 font-bold text-xl ml-2">Formazione</span>
-          <span className="text-emerald-900 font-bold text-xl">RUI</span>
+          <span className="text-blue-600 font-bold text-xl ml-2">Formazione</span>
+          <span className="text-blue-900 font-bold text-xl">OCF</span>
         </Link>
 
         {/* Auth */}

@@ -21,7 +21,7 @@ export default function HomePage() {
             Preparazione Esame OCF 2026
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-            Preparati all'Esame OCF<br />con quiz ufficiali e simulazioni
+            Preparati all'Esame OCF<br />con quiz e simulazioni
           </h1>
           <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
             La piattaforma di riferimento per chi vuole superare la prova valutativa OCF e iscriversi all'Albo unico dei Consulenti Finanziari.
@@ -42,7 +42,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto grid grid-cols-3 gap-8 text-center">
           <div>
             <p className="text-3xl font-bold text-blue-600">5.000+</p>
-            <p className="text-sm text-gray-500 mt-1">Domande ufficiali</p>
+            <p className="text-sm text-gray-500 mt-1">Domande</p>
           </div>
           <div>
             <p className="text-3xl font-bold text-blue-600">5</p>
@@ -63,7 +63,7 @@ export default function HomePage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { emoji: '📚', titolo: 'Domande ufficiali', desc: 'Oltre 5.000 domande aggiornate a gennaio 2026, divise per materia e argomento. Copre tutte le 5 aree del bando OCF.' },
+              { emoji: '📚', titolo: 'Domande', desc: 'Oltre 5.000 domande aggiornate a gennaio 2026, divise per materia e argomento. Copre tutte le 5 aree del bando OCF.' },
               { emoji: '⏱', titolo: 'Simulazione reale', desc: "Simula l'esame con 60 domande in 85 minuti, punteggio 80/100 per superarlo, esattamente come la prova valutativa ufficiale." },
               { emoji: '📊', titolo: 'Tracciamento progressi', desc: 'Monitora i tuoi errori per materia e concentrati dove sei più debole. La matematica e il diritto valgono il 72% dell\'esame.' },
             ].map(f => (
@@ -156,7 +156,7 @@ export default function HomePage() {
               <p className="text-blue-200 text-sm mb-8">IVA inclusa · validità 12 mesi</p>
               <ul className="space-y-3 mb-8 text-left">
                 {[
-                  '5.000+ domande ufficiali OCF',
+                  '5.000+ domande OCF',
                   'Simulazione 60 domande · 85 minuti',
                   'Soglia 80/100 come l\'esame reale',
                   'Tutte e 5 le materie del bando',
