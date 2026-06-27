@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
     description: "Oltre 5.000 domande aggiornate, simulazioni complete e allenamento mirato per superare la prova valutativa OCF.",
   },
-  googleAnalytics: 'G-PH6D3M97LF',
 };
 
 export default function RootLayout({
