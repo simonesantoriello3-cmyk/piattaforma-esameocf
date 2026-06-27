@@ -9,24 +9,18 @@ export default function EsercitazionePage() {
   const supabase = createClient()
   const [materie, setMaterie] = useState([])
   const [selezioni, setSelezioni] = useState({})
+  const [prioritaSbagliate, setPrioritaSbagliate] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [hasAccess, setHasAccess] = useState(false)
 
   useEffect(() => {
     async function init() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) { router.push('/login'); return }
-
       const { data: acquisti } = await supabase.from('acquisti').select('id').eq('user_id', user.id).limit(1)
       if (!acquisti || acquisti.length === 0) { router.push('/acquisto'); return }
-      setHasAccess(true)
 
-      const { data: materieData } = await supabase
-        .from('materie')
-        .select('id, nome')
-        .order('nome')
+      const { data: materieData } = await supabase.from('materie').select('id, nome').order('nome')
 
-      // Conta domande per materia
       const counts = {}
       await Promise.all((materieData || []).map(async m => {
         const { count } = await supabase
@@ -38,7 +32,6 @@ export default function EsercitazionePage() {
 
       const materieConCount = (materieData || []).map(m => ({ ...m, count: counts[m.id] }))
       setMaterie(materieConCount)
-
       const initSel = {}
       materieConCount.forEach(m => { initSel[m.id] = 0 })
       setSelezioni(initSel)
@@ -53,10 +46,10 @@ export default function EsercitazionePage() {
     const selezioneArray = Object.entries(selezioni)
       .filter(([_, v]) => v > 0)
       .map(([id, numero]) => ({ materiaId: id, numero }))
-
     const params = new URLSearchParams({
       modalita: 'esercitazione',
       selezione: JSON.stringify(selezioneArray),
+      prioritaSbagliate: String(prioritaSbagliate),
     })
     router.push(`/quiz?${params.toString()}`)
   }
@@ -68,13 +61,32 @@ export default function EsercitazionePage() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-32">
+    <div className="min-h-screen bg-gray-50 pb-36">
       <div className="bg-blue-600 py-10 px-6 text-center">
         <h1 className="text-2xl font-bold text-white mb-1">Esercitazione libera</h1>
         <p className="text-blue-100 text-sm">Scegli quante domande fare per ogni materia</p>
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-6 space-y-3">
+
+        {/* Opzione priorità sbagliate */}
+        <div
+          onClick={() => setPrioritaSbagliate(!prioritaSbagliate)}
+          className={`flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all ${
+            prioritaSbagliate ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'
+          }`}
+        >
+          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
+            prioritaSbagliate ? 'border-blue-600 bg-blue-600' : 'border-gray-300'
+          }`}>
+            {prioritaSbagliate && <span className="text-white text-xs font-bold">✓</span>}
+          </div>
+          <div>
+            <p className="font-semibold text-gray-900 text-sm">Dai priorità alle domande sbagliate</p>
+            <p className="text-xs text-gray-500 mt-0.5">Le domande che hai sbagliato in passato verranno mostrate per prime</p>
+          </div>
+        </div>
+
         {materie.map(m => (
           <CardMateria
             key={m.id}
@@ -85,7 +97,7 @@ export default function EsercitazionePage() {
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 shadow-lg">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <div>
             <p className="text-xs text-gray-400">Totale selezionate</p>
