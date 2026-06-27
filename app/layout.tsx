@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     icon: '/favicon.svg',
   },
   verification: {
-    google: 'VP_j0JZ3xXhCtQTkxbRLztUzeb4Ib9eDGbkmfs1nVAU',
+    google: 'hFhJHqfa75xSg2eD8R3LOBTXHIF0LSHvQEpb1kiukNs',
   },
   openGraph: {
     title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
