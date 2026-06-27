@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
     description: "Oltre 5.000 domande aggiornate, simulazioni complete e allenamento mirato per superare la prova valutativa OCF.",
   },
+  googleAnalytics: 'G-PH6D3M97LF',
 };
 
 export default function RootLayout({
@@ -53,7 +54,7 @@ export default function RootLayout({
     >
       <head>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-HR7XQ67414"
+          src="https://www.googletagmanager.com/gtag/js?id=G-PH6D3M97LF"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -61,7 +62,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-HR7XQ67414');
+            gtag('config', 'G-PH6D3M97LF');
           `}
         </Script>
       </head>
