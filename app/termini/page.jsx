@@ -26,9 +26,9 @@ export default function TerminiPage() {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">1. Informazioni sul Titolare</h2>
             <p>
-              La piattaforma FormazioneRUI è gestita da <strong>INSURHUB S.r.l.</strong>,
+              La piattaforma FormazioneOCF è gestita da <strong>INSURHUB S.r.l.</strong>,
               con sede legale in Italia, P.IVA <strong>06384170657</strong>.<br />
-              Contatto: <a href="mailto:info@formazionerui.com" className="text-emerald-600 hover:underline">info@formazionerui.com</a>
+              Contatto: <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a>
             </p>
             <p className="mt-3">
               I pagamenti effettuati sulla piattaforma sono processati e intestati a <strong>INSURHUB S.r.l.</strong>
@@ -39,7 +39,7 @@ export default function TerminiPage() {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">2. Oggetto del servizio</h2>
             <p>
-              FormazioneRUI è una piattaforma digitale di preparazione all'esame per l'iscrizione
+              FormazioneOCF è una piattaforma digitale di preparazione all'esame per l'iscrizione
               al Registro Unico degli Intermediari assicurativi e riassicurativi (RUI), gestito da IVASS.
               Il servizio include l'accesso a domande di preparazione, simulazioni d'esame e strumenti
               di monitoraggio dei progressi.
@@ -54,9 +54,7 @@ export default function TerminiPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">3. Acquisto e pagamento</h2>
             <p>I piani disponibili sono:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li><strong>Modulo Assicurativo</strong> — €79,00 IVA inclusa — validità 12 mesi</li>
-              <li><strong>Modulo Riassicurativo</strong> — €39,00 IVA inclusa — validità 12 mesi</li>
-              <li><strong>Entrambi i Moduli</strong> — €99,00 IVA inclusa — validità 12 mesi</li>
+              <li><strong>Simulatore OCF Completo</strong> — €29,00 IVA inclusa — validità 12 mesi</li>
             </ul>
             <p className="mt-3">
               I pagamenti vengono processati in modo sicuro tramite <strong>Stripe Inc.</strong>
@@ -83,7 +81,7 @@ export default function TerminiPage() {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">5. Limitazione di responsabilità</h2>
             <p>
-              FormazioneRUI è una piattaforma di preparazione e studio. I contenuti hanno scopo
+              FormazioneOCF è una piattaforma di preparazione e studio. I contenuti hanno scopo
               esclusivamente didattico e preparatorio. Ai sensi degli <strong>artt. 1218, 1223 e 2050
               del Codice Civile</strong> e nei limiti consentiti dalla legge applicabile:
             </p>
@@ -96,9 +94,9 @@ export default function TerminiPage() {
               </li>
               <li>
                 INSURHUB S.r.l. <strong>non è responsabile di eventuali aggiornamenti normativi</strong>
-                IVASS successivi alla pubblicazione dei contenuti. Le domande sono periodicamente
+                OCF successivi alla pubblicazione dei contenuti. Le domande sono periodicamente
                 aggiornate, ma l'utente è invitato a verificare sempre le normative vigenti sul
-                sito ufficiale IVASS (<a href="https://www.ivass.it" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">www.ivass.it</a>).
+                sito ufficiale OCF.
               </li>
               <li>
                 Ai sensi dell'<strong>art. 1256 c.c.</strong>, INSURHUB S.r.l. non è responsabile
@@ -118,7 +116,7 @@ export default function TerminiPage() {
               </li>
               <li>
                 INSURHUB S.r.l. <strong>non è in alcun modo affiliata, sponsorizzata o
-                approvata da IVASS</strong>. Il riferimento all'esame RUI è esclusivamente
+                approvata da OCF</strong>. Il riferimento all'esame RUI è esclusivamente
                 descrittivo della finalità preparatoria del servizio.
               </li>
             </ul>
@@ -127,7 +125,7 @@ export default function TerminiPage() {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">6. Proprietà intellettuale</h2>
             <p>
-              Tutti i contenuti presenti sulla piattaforma FormazioneRUI (testi, domande, grafica, codice)
+              Tutti i contenuti presenti sulla piattaforma FormazioneOCF (testi, domande, grafica, codice)
               sono di proprietà di INSURHUB S.r.l. o concessi in licenza ai sensi della
               <strong> L. 633/1941</strong> (Legge sul Diritto d'Autore) e successive modifiche.
               È vietata la riproduzione, distribuzione, modifica o utilizzo commerciale dei contenuti
@@ -149,7 +147,7 @@ export default function TerminiPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">8. Modifiche al servizio</h2>
             <p>
               INSURHUB S.r.l. si riserva il diritto di modificare, sospendere o interrompere
-              il servizio FormazioneRUI in qualsiasi momento. In caso di modifiche sostanziali,
+              il servizio FormazioneOCF in qualsiasi momento. In caso di modifiche sostanziali,
               gli utenti registrati con abbonamento attivo verranno informati via email con almeno
               30 giorni di anticipo. In caso di interruzione definitiva del servizio durante un
               periodo di abbonamento attivo, sarà riconosciuto un rimborso proporzionale.
@@ -172,7 +170,7 @@ export default function TerminiPage() {
             <p>
               Per informazioni, reclami o assistenza:<br />
               <strong>INSURHUB S.r.l.</strong><br />
-              Email: <a href="mailto:info@formazionerui.com" className="text-emerald-600 hover:underline">info@formazionerui.com</a><br />
+              Email: <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a><br />
               P.IVA: 06384170657
             </p>
           </section>
@@ -180,9 +178,9 @@ export default function TerminiPage() {
         </div>
       </div>
 
-      <footer className="bg-emerald-50 border-t border-emerald-100 py-6 px-6 text-center">
-        <p className="text-xs text-gray-400">© 2026 FormazioneRUI — INSURHUB S.r.l. P.IVA 06384170657</p>
-        <Link href="/" className="text-xs text-emerald-600 hover:text-emerald-700 mt-1 block">← Torna alla home</Link>
+      <footer className="bg-blue-50 border-t border-blue-100 py-6 px-6 text-center">
+        <p className="text-xs text-gray-400">© 2026 FormazioneOCF — INSURHUB S.r.l. P.IVA 06384170657</p>
+        <Link href="/" className="text-xs text-blue-600 hover:text-blue-700 mt-1 block">← Torna alla home</Link>
       </footer>
     </div>
   )

@@ -27,8 +27,8 @@ export default function PrivacyPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">1. Titolare del trattamento</h2>
             <p>
               Il Titolare del trattamento dei dati personali è <strong>INSURHUB S.r.l.</strong>,
-              con sede legale in Italia, P.IVA <strong>06384170657</strong>, che gestisce la piattaforma FormazioneRUI.<br />
-              Contatto: <a href="mailto:info@formazionerui.com" className="text-emerald-600 hover:underline">info@formazionerui.com</a>
+              con sede legale in Italia, P.IVA <strong>06384170657</strong>, che gestisce la piattaforma FormazioneOCF.<br />
+              Contatto: <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a>
             </p>
             <p className="mt-3">
               Il trattamento dei dati personali avviene nel rispetto del <strong>Regolamento UE 2016/679 (GDPR)</strong> e del
@@ -124,10 +124,10 @@ export default function PrivacyPage() {
               <li><strong>Art. 20</strong> — Richiedere la portabilità dei dati</li>
               <li><strong>Art. 21</strong> — Opporsi al trattamento dei propri dati</li>
               <li><strong>Art. 7, par. 3</strong> — Revocare il consenso in qualsiasi momento</li>
-              <li>Proporre reclamo al <strong>Garante per la Protezione dei Dati Personali</strong> (<a href="https://www.garanteprivacy.it" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>)</li>
+              <li>Proporre reclamo al <strong>Garante per la Protezione dei Dati Personali</strong> (<a href="https://www.garanteprivacy.it" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>)</li>
             </ul>
             <p className="mt-3">
-              Per esercitare questi diritti: <a href="mailto:info@formazionerui.com" className="text-emerald-600 hover:underline">info@formazionerui.com</a>.
+              Per esercitare questi diritti: <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a>.
               Il Titolare risponderà entro 30 giorni dalla ricezione della richiesta, come previsto dall'art. 12 GDPR.
             </p>
           </section>
@@ -159,9 +159,9 @@ export default function PrivacyPage() {
         </div>
       </div>
 
-      <footer className="bg-emerald-50 border-t border-emerald-100 py-6 px-6 text-center">
-        <p className="text-xs text-gray-400">© 2026 FormazioneRUI — INSURHUB S.r.l. P.IVA 06384170657</p>
-        <Link href="/" className="text-xs text-emerald-600 hover:text-emerald-700 mt-1 block">← Torna alla home</Link>
+      <footer className="bg-blue-50 border-t border-blue-100 py-6 px-6 text-center">
+        <p className="text-xs text-gray-400">© 2026 FormazioneOCF — INSURHUB S.r.l. P.IVA 06384170657</p>
+        <Link href="/" className="text-xs text-blue-600 hover:text-blue-700 mt-1 block">← Torna alla home</Link>
       </footer>
     </div>
   )

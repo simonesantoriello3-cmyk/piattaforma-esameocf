@@ -33,7 +33,7 @@ export default function CookiePage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">2. Cookie utilizzati da FormazioneRUI</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">2. Cookie utilizzati da FormazioneOCF</h2>
             
             <h3 className="font-semibold text-gray-800 mb-2 mt-4">Cookie tecnici (necessari)</h3>
             <p>Questi cookie sono indispensabili per il funzionamento della piattaforma:</p>
@@ -73,16 +73,16 @@ export default function CookiePage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">4. Contatti</h2>
             <p>
               Per informazioni sull'uso dei cookie:<br />
-              <a href="mailto:info@formazionerui.com" className="text-emerald-600 hover:underline">info@formazionerui.com</a>
+              <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a>
             </p>
           </section>
 
         </div>
       </div>
 
-      <footer className="bg-emerald-50 border-t border-emerald-100 py-6 px-6 text-center">
-        <p className="text-xs text-gray-400">© 2026 FormazioneRUI — INSURHUB S.r.l. P.IVA 06384170657</p>
-        <Link href="/" className="text-xs text-emerald-600 hover:text-emerald-700 mt-1 block">← Torna alla home</Link>
+      <footer className="bg-blue-50 border-t border-blue-100 py-6 px-6 text-center">
+        <p className="text-xs text-gray-400">© 2026 FormazioneOCF — INSURHUB S.r.l. P.IVA 06384170657</p>
+        <Link href="/" className="text-xs text-blue-600 hover:text-blue-700 mt-1 block">← Torna alla home</Link>
       </footer>
     </div>
   )

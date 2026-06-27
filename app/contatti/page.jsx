@@ -32,21 +32,21 @@ export default function ContattiPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 text-lg">✉️</span>
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-600 text-lg">✉️</span>
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Email</p>
-                    <a href="mailto:info@formazionerui.com" className="text-emerald-600 hover:underline text-sm">
-                      info@formazionerui.com
+                    <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline text-sm">
+                      info@formazioneocf.com
                     </a>
                     <p className="text-xs text-gray-400 mt-1">Risposta entro 24-48 ore lavorative</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 text-lg">🏢</span>
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-600 text-lg">🏢</span>
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Società</p>
@@ -56,8 +56,8 @@ export default function ContattiPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-emerald-600 text-lg">🕐</span>
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-600 text-lg">🕐</span>
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Orari di risposta</p>
@@ -69,7 +69,7 @@ export default function ContattiPage() {
             </div>
 
             {/* FAQ rapide */}
-            <div className="bg-emerald-50 rounded-2xl p-6">
+            <div className="bg-blue-50 rounded-2xl p-6">
               <h3 className="font-semibold text-gray-900 mb-4">Domande frequenti</h3>
               <div className="space-y-4">
                 {[
@@ -78,7 +78,7 @@ export default function ContattiPage() {
                   { q: 'I pagamenti sono sicuri?', r: 'Sì, utilizziamo Stripe con crittografia SSL.' },
                   { q: 'Posso avere un rimborso?', r: 'Consulta i nostri Termini e Condizioni per la politica di recesso.' },
                 ].map(faq => (
-                  <div key={faq.q} className="border-b border-emerald-100 pb-3 last:border-0 last:pb-0">
+                  <div key={faq.q} className="border-b border-blue-100 pb-3 last:border-0 last:pb-0">
                     <p className="font-medium text-gray-900 text-sm">{faq.q}</p>
                     <p className="text-gray-500 text-sm mt-1">{faq.r}</p>
                   </div>
@@ -96,7 +96,7 @@ export default function ContattiPage() {
                 <input
                   type="text"
                   placeholder="Mario Rossi"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 />
               </div>
               <div>
@@ -104,12 +104,12 @@ export default function ContattiPage() {
                 <input
                   type="email"
                   placeholder="mario@email.com"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Oggetto</label>
-                <select className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
+                <select className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                   <option>Informazioni sul servizio</option>
                   <option>Problema tecnico</option>
                   <option>Acquisto e pagamenti</option>
@@ -121,16 +121,16 @@ export default function ContattiPage() {
                 <textarea
                   rows={5}
                   placeholder="Scrivi il tuo messaggio..."
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white resize-none"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white resize-none"
                 />
               </div>
               <p className="text-xs text-gray-400">
                 Inviando questo modulo accetti la nostra{' '}
-                <Link href="/privacy" className="text-emerald-600 hover:underline">Privacy Policy</Link>.
+                <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</Link>.
               </p>
               <a
-                href="mailto:info@formazionerui.com"
-                className="block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition-colors text-center text-sm"
+                href="mailto:info@formazioneocf.com"
+                className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors text-center text-sm"
               >
                 Invia messaggio →
               </a>
@@ -143,9 +143,9 @@ export default function ContattiPage() {
         </div>
       </section>
 
-      <footer className="bg-emerald-50 border-t border-emerald-100 py-6 px-6 text-center">
-        <p className="text-xs text-gray-400">© 2025 FormazioneRUI — INSURHUB S.r.l. P.IVA 06384170657</p>
-        <Link href="/" className="text-xs text-emerald-600 hover:text-emerald-700 mt-1 block">← Torna alla home</Link>
+      <footer className="bg-blue-50 border-t border-blue-100 py-6 px-6 text-center">
+        <p className="text-xs text-gray-400">© 2026 FormazioneOCF — INSURHUB S.r.l. P.IVA 06384170657</p>
+        <Link href="/" className="text-xs text-blue-600 hover:text-blue-700 mt-1 block">← Torna alla home</Link>
       </footer>
     </div>
   )
