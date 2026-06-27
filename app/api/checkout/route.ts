@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { createClient } from '@/lib/supabase'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 const PRICE_MAP: Record<string, string> = {
-  assicurativo: process.env.STRIPE_PRICE_ASSICURATIVO!,
-  riassicurativo: process.env.STRIPE_PRICE_RIASSICURATIVO!,
-  completo: process.env.STRIPE_PRICE_ENTRAMBI!,
+  ocf: process.env.STRIPE_PRICE_OCF!,
 }
 
 export async function POST(req: NextRequest) {
