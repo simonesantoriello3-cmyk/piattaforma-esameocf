@@ -18,7 +18,6 @@ export default function ProfiloPage() {
   const [toastMsg, setToastMsg] = useState('')
   const [toastOk, setToastOk] = useState(true)
 
-  // Password
   const [nuovaPassword, setNuovaPassword] = useState('')
   const [confermaPassword, setConfermaPassword] = useState('')
   const [mostraPassword, setMostraPassword] = useState(false)
@@ -34,13 +33,14 @@ export default function ProfiloPage() {
 
       const { data: acquistiData } = await supabase
         .from('acquisti')
-        .select('modulo, importo, created_at')
+        .select('importo, created_at')
         .eq('user_id', user.id)
 
       const { data: sessioniData } = await supabase
         .from('sessioni')
         .select('*')
         .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
       setAcquisti(acquistiData || [])
       setSessioni(sessioniData || [])
@@ -66,14 +66,8 @@ export default function ProfiloPage() {
 
   async function salvaPassword() {
     setErrorePassword('')
-    if (nuovaPassword.length < 8) {
-      setErrorePassword('La password deve essere di almeno 8 caratteri')
-      return
-    }
-    if (nuovaPassword !== confermaPassword) {
-      setErrorePassword('Le password non coincidono')
-      return
-    }
+    if (nuovaPassword.length < 8) { setErrorePassword('La password deve essere di almeno 8 caratteri'); return }
+    if (nuovaPassword !== confermaPassword) { setErrorePassword('Le password non coincidono'); return }
     setSalvandoPassword(true)
     const { error } = await supabase.auth.updateUser({ password: nuovaPassword })
     if (!error) {
@@ -98,25 +92,9 @@ export default function ProfiloPage() {
     ? Math.round(sessioni.reduce((acc, s) => acc + (s.corrette / s.totale) * 100, 0) / totaleSessioni)
     : 0
 
-  const moduliAcquistati = acquisti.map(a => a.modulo)
-  const haCompleto = moduliAcquistati.includes('completo')
-  const haAssicurativo = moduliAcquistati.includes('assicurativo')
-  const haRiassicurativo = moduliAcquistati.includes('riassicurativo')
-
-  const cardModuli: any[] = []
-  if (haCompleto) {
-    const a = acquisti.find(a => a.modulo === 'completo')
-    cardModuli.push({ ...a, titolo: 'Entrambi i Moduli', importo: '€99' })
-  } else {
-    if (haAssicurativo) {
-      const a = acquisti.find(a => a.modulo === 'assicurativo')
-      cardModuli.push({ ...a, titolo: 'Modulo Assicurativo', importo: '€79' })
-    }
-    if (haRiassicurativo) {
-      const a = acquisti.find(a => a.modulo === 'riassicurativo')
-      cardModuli.push({ ...a, titolo: 'Modulo Riassicurativo', importo: '€39' })
-    }
-  }
+  const acquisto = acquisti[0]
+  const dataAcquisto = acquisto ? new Date(acquisto.created_at) : null
+  const dataScadenza = dataAcquisto ? new Date(new Date(dataAcquisto).setFullYear(dataAcquisto.getFullYear() + 1)) : null
 
   const forzaPassword = nuovaPassword.length === 0 ? 0
     : nuovaPassword.length < 6 ? 1
@@ -125,13 +103,12 @@ export default function ProfiloPage() {
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="w-10 h-10 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
     </div>
   )
 
   return (
     <>
-      {/* Toast */}
       {showToast && (
         <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 text-white text-sm font-medium px-5 py-3 rounded-2xl shadow-lg flex items-center gap-2 ${toastOk ? 'bg-gray-900' : 'bg-red-600'}`}>
           <span>{toastOk ? '✓' : '✗'}</span>
@@ -150,9 +127,9 @@ export default function ProfiloPage() {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-blue-900/70" />
           <div className="relative z-10">
-            <div className="w-16 h-16 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-2xl mx-auto mb-3">
+            <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-2xl mx-auto mb-3">
               {nomeUtente.charAt(0).toUpperCase()}
             </div>
             <h1 className="text-2xl font-bold text-white">{nomeUtente}</h1>
@@ -167,62 +144,101 @@ export default function ProfiloPage() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
             <h2 className="font-semibold text-gray-900 mb-4">📊 Le tue statistiche</h2>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              <div className="text-center p-3 bg-emerald-50 rounded-xl">
-                <p className="text-2xl font-bold text-emerald-600">{totaleSessioni}</p>
-                <p className="text-xs text-gray-500 mt-1">Sessioni totali</p>
-              </div>
-              <div className="text-center p-3 bg-emerald-50 rounded-xl">
-                <p className="text-2xl font-bold text-emerald-600">{simulate}</p>
-                <p className="text-xs text-gray-500 mt-1">Simulazioni</p>
-              </div>
-              <div className="text-center p-3 bg-emerald-50 rounded-xl">
-                <p className="text-2xl font-bold text-emerald-600">{superate}</p>
-                <p className="text-xs text-gray-500 mt-1">Superate</p>
-              </div>
-              <div className="text-center p-3 bg-emerald-50 rounded-xl">
-                <p className="text-2xl font-bold text-emerald-600">{mediaCorrette}%</p>
-                <p className="text-xs text-gray-500 mt-1">Media corrette</p>
-              </div>
+              {[
+                { val: totaleSessioni, label: 'Sessioni totali' },
+                { val: simulate, label: 'Simulazioni' },
+                { val: superate, label: 'Superate' },
+                { val: `${mediaCorrette}%`, label: 'Media corrette' },
+              ].map((s, i) => (
+                <div key={i} className="text-center p-3 bg-blue-50 rounded-xl">
+                  <p className="text-2xl font-bold text-blue-600">{s.val}</p>
+                  <p className="text-xs text-gray-500 mt-1">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Moduli acquistati */}
+          {/* Piano acquistato */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-            <h2 className="font-semibold text-gray-900 mb-4">🎓 Moduli acquistati</h2>
-            {cardModuli.length > 0 ? (
-              <div className="space-y-3">
-                {cardModuli.map((m, i) => (
-                  <div key={i} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-                    <div>
-                      <p className="font-semibold text-gray-900 text-sm">{m.titolo}</p>
-                      <p className="text-xs text-gray-500 mt-0.5">
-                        Acquistato il {new Date(m.created_at).toLocaleDateString('it-IT')}
-                      </p>
-                      <p className="text-xs text-gray-400 mt-0.5">
-                        Scade il {new Date(new Date(m.created_at).setFullYear(new Date(m.created_at).getFullYear() + 1)).toLocaleDateString('it-IT')}
-                      </p>
+            <h2 className="font-semibold text-gray-900 mb-4">🎓 Il tuo piano</h2>
+            {acquisto ? (
+              <div className="flex items-center justify-between p-4 bg-blue-50 rounded-xl border border-blue-100">
+                <div>
+                  <p className="font-bold text-gray-900">Simulatore OCF Completo</p>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Acquistato il {dataAcquisto?.toLocaleDateString('it-IT')}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    Valido fino al {dataScadenza?.toLocaleDateString('it-IT')}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full block mb-1">Attivo ✓</span>
+                  <span className="text-xs text-gray-400">€29</span>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-6">
+                <p className="text-gray-400 text-sm mb-3">Nessun piano attivo</p>
+                <a href="/acquisto" className="text-blue-600 font-semibold text-sm hover:underline">Acquista ora →</a>
+              </div>
+            )}
+          </div>
+
+          {/* Ultime sessioni */}
+          {sessioni.length > 0 && (
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+              <h2 className="font-semibold text-gray-900 mb-4">📈 Ultime sessioni</h2>
+              <div className="space-y-2">
+                {sessioni.slice(0, 5).map((s, i) => (
+                  <div key={i} className="flex items-center justify-between py-2.5 border-b border-gray-50 last:border-0">
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg">{s.modalita === 'simulazione' ? '🎯' : '📚'}</span>
+                      <div>
+                        <p className="text-sm font-medium text-gray-900 capitalize">{s.modalita}</p>
+                        <p className="text-xs text-gray-400">{new Date(s.created_at).toLocaleDateString('it-IT')}</p>
+                      </div>
                     </div>
                     <div className="text-right">
-                      <span className="bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full block mb-1">Attivo</span>
-                      <span className="text-xs text-gray-400">{m.importo}</span>
+                      <p className="text-sm font-bold text-gray-900">{s.corrette}/{s.totale}</p>
+                      {s.modalita === 'simulazione' && (
+                        <span className={`text-xs font-semibold ${s.superata ? 'text-green-600' : 'text-red-500'}`}>
+                          {s.superata ? '✓ Superata' : '✗ Non superata'}
+                        </span>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
-            ) : (
-              <div className="text-center py-6">
-                <p className="text-gray-400 text-sm mb-3">Nessun modulo acquistato</p>
-                <a href="/acquisto" className="text-emerald-600 font-semibold text-sm hover:underline">Scopri i piani →</a>
-              </div>
-            )}
+            </div>
+          )}
+
+          {/* Modifica nome */}
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+            <h2 className="font-semibold text-gray-900 mb-4">✏️ Modifica nome</h2>
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={nuovoNome}
+                onChange={e => setNuovoNome(e.target.value)}
+                className="flex-1 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400 transition-colors"
+                placeholder="Il tuo nome"
+              />
+              <button
+                onClick={salvaNome}
+                disabled={salvando}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors disabled:opacity-40"
+              >
+                {salvando ? '...' : 'Salva'}
+              </button>
+            </div>
           </div>
 
           {/* Cambia password */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
             <h2 className="font-semibold text-gray-900 mb-1">🔒 Cambia password</h2>
-            <p className="text-xs text-gray-400 mb-4">Scegli una password sicura di almeno 8 caratteri</p>
+            <p className="text-xs text-gray-400 mb-4">Almeno 8 caratteri</p>
             <div className="space-y-4">
-
               <div>
                 <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1">Nuova password</label>
                 <div className="relative">
@@ -230,30 +246,24 @@ export default function ProfiloPage() {
                     type={mostraPassword ? 'text' : 'password'}
                     value={nuovaPassword}
                     onChange={e => setNuovaPassword(e.target.value)}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none focus:border-emerald-400 transition-colors pr-12"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-400 transition-colors pr-16"
                     placeholder="Nuova password"
                   />
-                  <button
-                    type="button"
-                    onClick={() => setMostraPassword(!mostraPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs font-medium"
-                  >
+                  <button type="button" onClick={() => setMostraPassword(!mostraPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs font-medium">
                     {mostraPassword ? 'Nascondi' : 'Mostra'}
                   </button>
                 </div>
-
-                {/* Indicatore forza password */}
                 {nuovaPassword.length > 0 && (
                   <div className="mt-2">
                     <div className="flex gap-1 mb-1">
                       {[1, 2, 3].map(i => (
                         <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${forzaPassword >= i
-                          ? i === 1 ? 'bg-red-400' : i === 2 ? 'bg-yellow-400' : 'bg-emerald-500'
-                          : 'bg-gray-100'}`}
-                        />
+                          ? i === 1 ? 'bg-red-400' : i === 2 ? 'bg-yellow-400' : 'bg-blue-500'
+                          : 'bg-gray-100'}`} />
                       ))}
                     </div>
-                    <p className={`text-xs ${forzaPassword === 1 ? 'text-red-500' : forzaPassword === 2 ? 'text-yellow-600' : 'text-emerald-600'}`}>
+                    <p className={`text-xs ${forzaPassword === 1 ? 'text-red-500' : forzaPassword === 2 ? 'text-yellow-600' : 'text-blue-600'}`}>
                       {forzaPassword === 1 ? 'Password debole' : forzaPassword === 2 ? 'Password media' : 'Password sicura'}
                     </p>
                   </div>
@@ -266,10 +276,9 @@ export default function ProfiloPage() {
                   type={mostraPassword ? 'text' : 'password'}
                   value={confermaPassword}
                   onChange={e => setConfermaPassword(e.target.value)}
-                  className={`w-full border rounded-xl px-4 py-3 text-sm text-gray-900 focus:outline-none transition-colors ${
+                  className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors ${
                     confermaPassword.length > 0 && confermaPassword !== nuovaPassword
-                      ? 'border-red-300 focus:border-red-400'
-                      : 'border-gray-200 focus:border-emerald-400'
+                      ? 'border-red-300' : 'border-gray-200 focus:border-blue-400'
                   }`}
                   placeholder="Ripeti la password"
                 />
@@ -277,7 +286,7 @@ export default function ProfiloPage() {
                   <p className="text-xs text-red-500 mt-1">Le password non coincidono</p>
                 )}
                 {confermaPassword.length > 0 && confermaPassword === nuovaPassword && (
-                  <p className="text-xs text-emerald-600 mt-1">✓ Le password coincidono</p>
+                  <p className="text-xs text-blue-600 mt-1">✓ Le password coincidono</p>
                 )}
               </div>
 
@@ -290,11 +299,10 @@ export default function ProfiloPage() {
               <button
                 onClick={salvaPassword}
                 disabled={salvandoPassword || nuovaPassword.length < 8 || nuovaPassword !== confermaPassword}
-                className="w-full bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 rounded-xl text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 rounded-xl text-sm transition-colors disabled:opacity-40"
               >
                 {salvandoPassword ? 'Aggiornamento...' : 'Aggiorna password'}
               </button>
-
             </div>
           </div>
 
