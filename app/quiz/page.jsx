@@ -195,6 +195,7 @@ function QuizInner() {
         letteraCorretta: d.letteraCorretta,
         rispostaUtente: (r || risposte)[d.id] || null,
         materia: d.materia?.nome || '',
+        pratico: d.pratico || false,
       })),
       modalita, soglia, minuti, secondiImpiegati,
       data: new Date().toISOString(),

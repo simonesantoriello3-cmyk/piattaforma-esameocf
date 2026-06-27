@@ -23,12 +23,24 @@ function RisultatiInner() {
       const corr = parsed.domande.filter(d => d.rispostaUtente === d.letteraCorretta).length
       const salt = parsed.domande.filter(d => !d.rispostaUtente).length
       const err = tot - corr - salt
-      const punt = corr // OCF: 1 punto per risposta corretta
-      const sup = parsed.soglia != null ? punt >= parsed.soglia : null
+
+      // Punteggio reale OCF: domande pratiche = 2pt, teoriche = 1pt
+      // Le prime 40 domande da 2 punti, le ultime 20 da 1 punto
+      // In realtà usiamo il campo pratico se disponibile, altrimenti stima
+      let punteggio = 10 // punteggio base
+      parsed.domande.forEach(d => {
+        if (d.rispostaUtente === d.letteraCorretta) {
+          punteggio += d.pratico ? 2 : 1
+        }
+        // Nessuna penalità per risposta errata
+      })
+      punteggio = Math.min(punteggio, 100)
+
+      const sup = parsed.modalita === 'simulazione' ? punteggio >= 80 : null
       await supabase.from('sessioni').insert({
         user_id: user.id,
         modalita: parsed.modalita,
-        punteggio: punt,
+        punteggio: punteggio,
         corrette: corr,
         errate: err,
         omesse: salt,
@@ -47,14 +59,23 @@ function RisultatiInner() {
 
   if (!dati) return null
 
-  const { domande, modalita, data, soglia, secondiImpiegati } = dati
+  const { domande, modalita, data, secondiImpiegati } = dati
   const totale = domande.length
   const corrette = domande.filter(d => d.rispostaUtente === d.letteraCorretta).length
   const saltate = domande.filter(d => !d.rispostaUtente).length
   const errate = totale - corrette - saltate
-  const pct = Math.round((corrette / totale) * 100)
-  const superato = soglia != null ? corrette >= soglia : null
-  const durataFormattata = typeof secondiImpiegati === 'number'
+
+  // Punteggio reale OCF
+  let punteggio = 10
+  domande.forEach(d => {
+    if (d.rispostaUtente === d.letteraCorretta) {
+      punteggio += d.pratico ? 2 : 1
+    }
+  })
+  punteggio = Math.min(punteggio, 100)
+
+  const superato = modalita === 'simulazione' ? punteggio >= 80 : null
+  const durataFormattata = typeof secondiImpiegati === 'number' && secondiImpiegati > 0
     ? `${Math.floor(secondiImpiegati / 60)}m ${secondiImpiegati % 60}s`
     : null
 
@@ -79,37 +100,53 @@ function RisultatiInner() {
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+
         {/* Score card */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
           {modalita === 'simulazione' && (
             <div className="text-center mb-6">
-              <p className="text-sm font-semibold text-blue-700 uppercase tracking-widest mb-3">Risultato simulazione OCF</p>
-              <p className="text-5xl font-bold text-gray-900">{corrette}<span className="text-2xl text-gray-400">/{totale}</span></p>
-              <p className="text-sm text-gray-500 mt-1">{pct}% di risposte corrette</p>
+              <p className="text-xs font-bold text-blue-700 uppercase tracking-widest mb-3">Risultato Simulazione OCF</p>
+              <p className="text-6xl font-bold text-gray-900">{punteggio}<span className="text-2xl text-gray-400">/100</span></p>
+              <p className="text-sm text-gray-500 mt-2">{corrette} risposte corrette su {totale}</p>
               <div className="mt-4 flex flex-col items-center gap-2">
-                <span className={`inline-flex rounded-full px-5 py-2 text-sm font-semibold ${superato ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                <span className={`inline-flex rounded-full px-5 py-2 text-sm font-bold ${superato ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                   {superato ? '✓ Esame superato' : '✗ Esame non superato'}
                 </span>
-                <span className="text-xs text-gray-400">Soglia: {soglia}/{totale} risposte corrette (80%)</span>
-                {durataFormattata && <span className="text-xs text-gray-400">Tempo: {durataFormattata}</span>}
+                <span className="text-xs text-gray-400">Soglia: 80/100 punti</span>
+                {durataFormattata && <span className="text-xs text-gray-400">Tempo impiegato: {durataFormattata}</span>}
               </div>
+            </div>
+          )}
+
+          {modalita === 'esercitazione' && (
+            <div className="text-center mb-6">
+              <p className="text-xs font-bold text-blue-700 uppercase tracking-widest mb-3">Risultato Esercitazione</p>
+              <p className="text-6xl font-bold text-gray-900">{Math.round((corrette/totale)*100)}<span className="text-2xl text-gray-400">%</span></p>
+              <p className="text-sm text-gray-500 mt-2">{corrette} corrette su {totale} domande</p>
+              {durataFormattata && <p className="text-xs text-gray-400 mt-1">Tempo: {durataFormattata}</p>}
             </div>
           )}
 
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-green-50 rounded-xl p-3">
               <p className="text-2xl font-bold text-green-600">{corrette}</p>
-              <p className="text-xs text-gray-500">Corrette</p>
+              <p className="text-xs text-gray-500 mt-0.5">Corrette</p>
             </div>
             <div className="bg-red-50 rounded-xl p-3">
               <p className="text-2xl font-bold text-red-500">{errate}</p>
-              <p className="text-xs text-gray-500">Errate</p>
+              <p className="text-xs text-gray-500 mt-0.5">Errate</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-3">
               <p className="text-2xl font-bold text-gray-400">{saltate}</p>
-              <p className="text-xs text-gray-500">Saltate</p>
+              <p className="text-xs text-gray-500 mt-0.5">Saltate</p>
             </div>
           </div>
+
+          {modalita === 'simulazione' && (
+            <div className="mt-4 bg-blue-50 rounded-xl p-3 text-xs text-blue-700 text-center">
+              <strong>Punteggio OCF:</strong> 10 punti base · +2 per domande pratiche · +1 per domande teoriche · nessuna penalità
+            </div>
+          )}
         </div>
 
         {/* Azioni */}
@@ -159,7 +196,10 @@ function RisultatiInner() {
                     </span>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm text-gray-800 leading-snug line-clamp-2">{d.testo}</p>
-                      {d.materia && <span className="text-xs text-gray-400 mt-0.5 block">{d.materia}</span>}
+                      <div className="flex items-center gap-2 mt-0.5">
+                        {d.materia && <span className="text-xs text-gray-400">{d.materia}</span>}
+                        {d.pratico && <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-semibold">2pt</span>}
+                      </div>
                     </div>
                     <span className="text-gray-300 text-sm flex-shrink-0 ml-2">{isAperta ? '▲' : '▼'}</span>
                   </button>
@@ -171,7 +211,7 @@ function RisultatiInner() {
                         const isErr = isScelta && !isGiusta
                         return (
                           <div key={lettera} className={`flex items-start gap-2 px-3 py-2 rounded-lg text-sm border ${isGiusta ? 'bg-green-50 border-green-300 text-green-800' : isErr ? 'bg-red-50 border-red-300 text-red-700' : 'bg-gray-50 border-gray-200 text-gray-500'}`}>
-                            <span className="font-bold flex-shrink-0 w-4 uppercase">{lettera}.</span>
+                            <span className="font-bold flex-shrink-0 w-4">{lettera}.</span>
                             <span className="flex-1 leading-snug">{testo}</span>
                             {isGiusta && <span className="ml-auto text-green-600 font-bold">✓</span>}
                             {isErr && <span className="ml-auto text-red-500 font-bold">✗</span>}
