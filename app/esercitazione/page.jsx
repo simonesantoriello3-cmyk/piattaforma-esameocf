@@ -7,15 +7,16 @@ import { createClient } from '@/lib/supabase'
 export default function EsercitazionePage() {
   const router = useRouter()
   const supabase = createClient()
+
   const [materie, setMaterie] = useState([])
   const [selezioni, setSelezioni] = useState({})
-  const [prioritaSbagliate, setPrioritaSbagliate] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function init() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) { router.push('/login'); return }
+
       const { data: acquisti } = await supabase.from('acquisti').select('id').eq('user_id', user.id).limit(1)
       if (!acquisti || acquisti.length === 0) { router.push('/acquisto'); return }
 
@@ -32,24 +33,34 @@ export default function EsercitazionePage() {
 
       const materieConCount = (materieData || []).map(m => ({ ...m, count: counts[m.id] }))
       setMaterie(materieConCount)
-      const initSel = {}
-      materieConCount.forEach(m => { initSel[m.id] = 0 })
-      setSelezioni(initSel)
+
+      const initSelezioni = {}
+      materieConCount.forEach(m => {
+        initSelezioni[m.id] = { numero: 0, prioritaSbagliate: false }
+      })
+      setSelezioni(initSelezioni)
       setLoading(false)
     }
     init()
   }, [])
 
-  const totale = Object.values(selezioni).reduce((s, v) => s + (v || 0), 0)
+  function aggiorna(materiaId, campo, valore) {
+    setSelezioni(prev => ({
+      ...prev,
+      [materiaId]: { ...prev[materiaId], [campo]: valore },
+    }))
+  }
+
+  const totale = Object.values(selezioni).reduce((s, v) => s + (v.numero || 0), 0)
 
   function avvia() {
     const selezioneArray = Object.entries(selezioni)
-      .filter(([_, v]) => v > 0)
-      .map(([id, numero]) => ({ materiaId: id, numero }))
+      .filter(([_, v]) => v.numero > 0)
+      .map(([id, v]) => ({ materiaId: id, numero: v.numero, prioritaSbagliate: v.prioritaSbagliate }))
+
     const params = new URLSearchParams({
       modalita: 'esercitazione',
       selezione: JSON.stringify(selezioneArray),
-      prioritaSbagliate: String(prioritaSbagliate),
     })
     router.push(`/quiz?${params.toString()}`)
   }
@@ -61,43 +72,34 @@ export default function EsercitazionePage() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-36">
-      <div className="bg-blue-600 py-10 px-6 text-center">
-        <h1 className="text-2xl font-bold text-white mb-1">Esercitazione libera</h1>
-        <p className="text-blue-100 text-sm">Scegli quante domande fare per ogni materia</p>
-      </div>
-
-      <div className="max-w-2xl mx-auto px-4 py-6 space-y-3">
-
-        {/* Opzione priorità sbagliate */}
-        <div
-          onClick={() => setPrioritaSbagliate(!prioritaSbagliate)}
-          className={`flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition-all ${
-            prioritaSbagliate ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-blue-300'
-          }`}
-        >
-          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
-            prioritaSbagliate ? 'border-blue-600 bg-blue-600' : 'border-gray-300'
-          }`}>
-            {prioritaSbagliate && <span className="text-white text-xs font-bold">✓</span>}
-          </div>
-          <div>
-            <p className="font-semibold text-gray-900 text-sm">Dai priorità alle domande sbagliate</p>
-            <p className="text-xs text-gray-500 mt-0.5">Le domande che hai sbagliato in passato verranno mostrate per prime</p>
-          </div>
+    <div className="min-h-screen bg-gray-50 pb-32">
+      <section
+        className="relative py-14 px-6 text-center"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600&q=80&auto=format&fit=crop)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-blue-900/70"></div>
+        <div className="relative z-10">
+          <h1 className="text-3xl font-bold text-white mb-2">Esercitazione libera</h1>
+          <p className="text-white/80 text-sm">Scegli quante domande fare per ogni materia.</p>
         </div>
+      </section>
 
+      <div className="max-w-2xl mx-auto px-4 py-8 space-y-3">
         {materie.map(m => (
           <CardMateria
             key={m.id}
             materia={m}
-            valore={selezioni[m.id] || 0}
-            onChange={(val) => setSelezioni(prev => ({ ...prev, [m.id]: val }))}
+            selezione={selezioni[m.id] || { numero: 0, prioritaSbagliate: false }}
+            onChange={aggiorna}
           />
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 bg-blue-50 border-t border-blue-200 px-4 py-4">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <div>
             <p className="text-xs text-gray-400">Totale selezionate</p>
@@ -116,31 +118,42 @@ export default function EsercitazionePage() {
   )
 }
 
-function CardMateria({ materia, valore, onChange }) {
+function CardMateria({ materia, selezione, onChange }) {
   const preset = [5, 10, 20, 50].filter(v => v <= materia.count)
+
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-3">
         <h3 className="font-semibold text-gray-900 text-sm flex-1 pr-4 leading-snug">{materia.nome}</h3>
         <span className="text-xs text-gray-400 flex-shrink-0">{materia.count} disponibili</span>
       </div>
+
+      <label className="flex items-center gap-2 text-xs text-gray-500 mb-4 cursor-pointer">
+        <input
+          type="checkbox"
+          checked={selezione.prioritaSbagliate}
+          onChange={e => onChange(materia.id, 'prioritaSbagliate', e.target.checked)}
+          className="rounded accent-blue-600"
+        />
+        Dai priorità alle domande sbagliate più spesso
+      </label>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {preset.map(v => (
           <button
             key={v}
-            onClick={() => onChange(valore === v ? 0 : v)}
+            onClick={() => onChange(materia.id, 'numero', selezione.numero === v ? 0 : v)}
             className={`px-4 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors ${
-              valore === v ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-200 hover:border-blue-400'
+              selezione.numero === v ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-200 hover:border-blue-400'
             }`}
           >
             {v}
           </button>
         ))}
         <button
-          onClick={() => onChange(valore === materia.count ? 0 : materia.count)}
+          onClick={() => onChange(materia.id, 'numero', selezione.numero === materia.count ? 0 : materia.count)}
           className={`px-4 py-1.5 rounded-xl text-sm font-semibold border-2 transition-colors ${
-            valore === materia.count ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-200 hover:border-blue-400'
+            selezione.numero === materia.count ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-200 hover:border-blue-400'
           }`}
         >
           Tutte ({materia.count})
@@ -150,16 +163,19 @@ function CardMateria({ materia, valore, onChange }) {
       <div className="flex items-center gap-3">
         <span className="text-xs text-gray-400 w-4">0</span>
         <input
-          type="range" min={0} max={materia.count} value={valore}
-          onChange={e => onChange(Number(e.target.value))}
+          type="range"
+          min={0}
+          max={materia.count}
+          value={selezione.numero}
+          onChange={e => onChange(materia.id, 'numero', Number(e.target.value))}
           className="flex-1 accent-blue-600"
         />
         <span className="text-xs text-gray-400 w-8 text-right">{materia.count}</span>
-        <span className="text-sm font-bold text-blue-600 w-8 text-right">{valore}</span>
+        <span className="text-sm font-bold text-blue-600 w-8 text-right">{selezione.numero}</span>
       </div>
 
-      {valore > 0 && (
-        <p className="text-xs text-blue-600 font-semibold mt-2">✓ {valore} domande selezionate</p>
+      {selezione.numero > 0 && (
+        <p className="text-xs text-blue-600 font-semibold mt-2">✓ {selezione.numero} domande selezionate</p>
       )}
     </div>
   )
