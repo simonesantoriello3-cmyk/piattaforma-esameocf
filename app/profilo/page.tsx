@@ -123,7 +123,7 @@ export default function ProfiloPage() {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-blue-900/70" />
+          <div className="absolute inset-0 bg-black/50" />
           <div className="relative z-10">
             <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-2xl mx-auto mb-3">
               {nomeUtente.charAt(0).toUpperCase()}
