@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FormazioneRUI — Preparati all'Esame RUI",
-  description: "La piattaforma di riferimento per superare l'esame di iscrizione al Registro Unico degli Intermediari assicurativi e riassicurativi. 2.292 domande ufficiali e simulazioni.",
+  title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
+  description: "La piattaforma di riferimento per prepararti alla prova valutativa OCF. Oltre 5.000 domande aggiornate, simulazioni complete e allenamento mirato per superare l'esame.",
   icons: {
     icon: '/favicon.svg',
   },
@@ -27,12 +27,17 @@ export const metadata: Metadata = {
     google: 'VP_j0JZ3xXhCtQTkxbRLztUzeb4Ib9eDGbkmfs1nVAU',
   },
   openGraph: {
-    title: "FormazioneRUI — Preparati all'Esame RUI",
-    description: "2.292 domande ufficiali e simulazioni per superare l'esame RUI.",
-    url: "https://formazionerui.com",
-    siteName: "FormazioneRUI",
+    title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
+    description: "Oltre 5.000 domande aggiornate, simulazioni complete e allenamento mirato per superare la prova valutativa OCF.",
+    url: "https://formazioneocf.com",
+    siteName: "FormazioneOCF",
     locale: "it_IT",
     type: "website",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
+    description: "Oltre 5.000 domande aggiornate, simulazioni complete e allenamento mirato per superare la prova valutativa OCF.",
   },
 };
 
