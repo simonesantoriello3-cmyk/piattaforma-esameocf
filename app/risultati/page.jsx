@@ -12,29 +12,22 @@ function RisultatiInner() {
   const [aperte, setAperte] = useState({})
 
   useEffect(() => {
-    const raw = sessionStorage.getItem('FormazioneRUI_risultati')
+    const raw = sessionStorage.getItem('FormazioneOCF_risultati')
     if (!raw) { router.push('/dashboard'); return }
     setDati(JSON.parse(raw))
-    const giaaSalvato = sessionStorage.getItem('FormazioneRUI_sessione_salvata')
 
-    async function salvaSessione(datiRaw) {
-      const parsed = JSON.parse(datiRaw)
+    async function salvaSessione(parsed) {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
       const tot = parsed.domande.length
       const corr = parsed.domande.filter(d => d.rispostaUtente === d.letteraCorretta).length
       const salt = parsed.domande.filter(d => !d.rispostaUtente).length
       const err = tot - corr - salt
-      const punt = parsed.domande.reduce((acc, d) => {
-        if (d.rispostaUtente === d.letteraCorretta) return acc + 1
-        if (d.rispostaUtente && d.rispostaUtente !== d.letteraCorretta) return acc - 0.5
-        return acc
-      }, 0)
-      const sup = (parsed.modalita === 'simulazione' && parsed.soglia != null) ? punt >= parsed.soglia : null
+      const punt = corr // OCF: 1 punto per risposta corretta
+      const sup = parsed.soglia != null ? punt >= parsed.soglia : null
       await supabase.from('sessioni').insert({
         user_id: user.id,
         modalita: parsed.modalita,
-        tipo: parsed.tipo || null,
         punteggio: punt,
         corrette: corr,
         errate: err,
@@ -44,9 +37,11 @@ function RisultatiInner() {
         secondi_impiegati: parsed.secondiImpiegati || 0,
       })
     }
+
+    const giaaSalvato = sessionStorage.getItem('FormazioneOCF_sessione_salvata')
     if (!giaaSalvato) {
-      sessionStorage.setItem('FormazioneRUI_sessione_salvata', '1')
-      salvaSessione(raw)
+      sessionStorage.setItem('FormazioneOCF_sessione_salvata', '1')
+      salvaSessione(JSON.parse(raw))
     }
   }, [])
 
@@ -58,13 +53,7 @@ function RisultatiInner() {
   const saltate = domande.filter(d => !d.rispostaUtente).length
   const errate = totale - corrette - saltate
   const pct = Math.round((corrette / totale) * 100)
-  const punteggio = domande.reduce((acc, d) => {
-    if (d.rispostaUtente === d.letteraCorretta) return acc + 1
-    if (d.rispostaUtente && d.rispostaUtente !== d.letteraCorretta) return acc - 0.5
-    return acc
-  }, 0)
-  const punteggioMax = totale
-  const superato = soglia != null ? punteggio >= soglia : null
+  const superato = soglia != null ? corrette >= soglia : null
   const durataFormattata = typeof secondiImpiegati === 'number'
     ? `${Math.floor(secondiImpiegati / 60)}m ${secondiImpiegati % 60}s`
     : null
@@ -75,10 +64,6 @@ function RisultatiInner() {
     if (filtro === 'saltate') return !d.rispostaUtente
     return true
   })
-
-  const r = 44
-  const circ = 2 * Math.PI * r
-  const offset = circ - (pct / 100) * circ
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
@@ -94,56 +79,55 @@ function RisultatiInner() {
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+        {/* Score card */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-          <div className="space-y-6">
-            {modalita === 'simulazione' && (
-              <div className="rounded-3xl border border-gray-200 bg-blue-50 p-5 text-center">
-                <p className="text-sm font-semibold text-blue-700 uppercase tracking-[0.2em] mb-3">Risultato simulazione</p>
-                <p className="text-4xl font-bold text-slate-900">{punteggio.toFixed(1)} / {punteggioMax}</p>
-                <div className="mt-3 flex flex-col items-center gap-2">
-                  <span className={`inline-flex rounded-full px-4 py-2 text-sm font-semibold ${superato ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`}>
-                    {superato ? '✓ Superato' : '✗ Non superato'}
-                  </span>
-                  {durataFormattata && (
-                    <span className="text-sm text-gray-600">Tempo impiegato: {durataFormattata}</span>
-                  )}
-                </div>
+          {modalita === 'simulazione' && (
+            <div className="text-center mb-6">
+              <p className="text-sm font-semibold text-blue-700 uppercase tracking-widest mb-3">Risultato simulazione OCF</p>
+              <p className="text-5xl font-bold text-gray-900">{corrette}<span className="text-2xl text-gray-400">/{totale}</span></p>
+              <p className="text-sm text-gray-500 mt-1">{pct}% di risposte corrette</p>
+              <div className="mt-4 flex flex-col items-center gap-2">
+                <span className={`inline-flex rounded-full px-5 py-2 text-sm font-semibold ${superato ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                  {superato ? '✓ Esame superato' : '✗ Esame non superato'}
+                </span>
+                <span className="text-xs text-gray-400">Soglia: {soglia}/{totale} risposte corrette (80%)</span>
+                {durataFormattata && <span className="text-xs text-gray-400">Tempo: {durataFormattata}</span>}
               </div>
-            )}
+            </div>
+          )}
 
-            {modalita === 'esercitazione' && (
-              <div className="rounded-3xl border border-gray-200 bg-white p-5">
-                <p className="text-sm font-semibold text-gray-500 uppercase tracking-[0.2em] mb-3">Risultato esercitazione</p>
-                <div className="grid grid-cols-3 gap-3 text-center">
-                  <div><p className="text-2xl font-bold text-green-600">{corrette}</p><p className="text-xs text-gray-500">Corrette</p></div>
-                  <div><p className="text-2xl font-bold text-red-500">{errate}</p><p className="text-xs text-gray-500">Errate</p></div>
-                  <div><p className="text-2xl font-bold text-gray-400">{saltate}</p><p className="text-xs text-gray-500">Saltate</p></div>
-                </div>
-              </div>
-            )}
-
-            {modalita === 'simulazione' && (
-              <div className="rounded-3xl border border-gray-200 bg-white p-5">
-                <div className="grid grid-cols-3 gap-3 text-center">
-                  <div><p className="text-2xl font-bold text-green-600">{corrette}</p><p className="text-xs text-gray-500">Corrette</p></div>
-                  <div><p className="text-2xl font-bold text-red-500">{errate}</p><p className="text-xs text-gray-500">Errate</p></div>
-                  <div><p className="text-2xl font-bold text-gray-400">{saltate}</p><p className="text-xs text-gray-500">Saltate</p></div>
-                </div>
-              </div>
-            )}
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="bg-green-50 rounded-xl p-3">
+              <p className="text-2xl font-bold text-green-600">{corrette}</p>
+              <p className="text-xs text-gray-500">Corrette</p>
+            </div>
+            <div className="bg-red-50 rounded-xl p-3">
+              <p className="text-2xl font-bold text-red-500">{errate}</p>
+              <p className="text-xs text-gray-500">Errate</p>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-3">
+              <p className="text-2xl font-bold text-gray-400">{saltate}</p>
+              <p className="text-xs text-gray-500">Saltate</p>
+            </div>
           </div>
         </div>
 
+        {/* Azioni */}
         <div className="space-y-3">
           <div className="flex gap-3">
-            <button onClick={() => router.push('/esercitazione')} className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl text-sm transition-colors">📚 Nuova esercitazione</button>
-            <button onClick={() => router.push('/simulazione')} className="flex-1 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 font-semibold py-3 rounded-xl text-sm transition-colors">🎯 Simulazione esame</button>
+            <button onClick={() => router.push('/esercitazione')} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl text-sm transition-colors">
+              📚 Nuova esercitazione
+            </button>
+            <button onClick={() => router.push('/simulazione')} className="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-3 rounded-xl text-sm transition-colors">
+              🎯 Nuova simulazione
+            </button>
           </div>
-          <button onClick={() => router.push('/dashboard')} className="w-full bg-gradient-to-r from-slate-700 to-slate-900 hover:from-slate-800 hover:to-black text-white font-semibold py-3 rounded-xl text-sm transition-all shadow-sm">
+          <button onClick={() => router.push('/dashboard')} className="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 rounded-xl text-sm transition-colors">
             🏠 Torna alla dashboard
           </button>
         </div>
 
+        {/* Revisione domande */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="px-5 py-4 border-b border-gray-100">
             <h2 className="font-semibold text-gray-900 mb-3">Rivedi le domande</h2>
@@ -187,7 +171,7 @@ function RisultatiInner() {
                         const isErr = isScelta && !isGiusta
                         return (
                           <div key={lettera} className={`flex items-start gap-2 px-3 py-2 rounded-lg text-sm border ${isGiusta ? 'bg-green-50 border-green-300 text-green-800' : isErr ? 'bg-red-50 border-red-300 text-red-700' : 'bg-gray-50 border-gray-200 text-gray-500'}`}>
-                            <span className="font-bold flex-shrink-0 w-4">{lettera}.</span>
+                            <span className="font-bold flex-shrink-0 w-4 uppercase">{lettera}.</span>
                             <span className="flex-1 leading-snug">{testo}</span>
                             {isGiusta && <span className="ml-auto text-green-600 font-bold">✓</span>}
                             {isErr && <span className="ml-auto text-red-500 font-bold">✗</span>}
