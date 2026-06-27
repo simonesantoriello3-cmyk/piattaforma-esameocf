@@ -89,11 +89,11 @@ export default function HomePage() {
           </p>
           <div className="grid md:grid-cols-5 gap-4">
             {[
-              { lettera: 'A', nome: 'Matematica finanziaria, mercati e strumenti', domande: '25', colore: 'bg-blue-600' },
-              { lettera: 'B', nome: 'Diritto del mercato finanziario e disciplina CF', domande: '24', colore: 'bg-blue-500' },
-              { lettera: 'C', nome: 'Diritto tributario del mercato finanziario', domande: '6', colore: 'bg-blue-400' },
-              { lettera: 'D', nome: 'Diritto privato e commerciale', domande: '5', colore: 'bg-blue-300' },
-              { lettera: 'E', nome: 'Previdenza e assicurazioni', domande: '6', colore: 'bg-blue-200' },
+              { lettera: 'A', nome: 'Diritto del mercato finanziario e degli intermediari', domande: '2.000', colore: 'bg-blue-600' },
+              { lettera: 'B', nome: 'Matematica finanziaria, mercati e strumenti', domande: '1.600', colore: 'bg-blue-500' },
+              { lettera: 'C', nome: 'Nozioni di diritto tributario', domande: '500', colore: 'bg-blue-400' },
+              { lettera: 'D', nome: 'Nozioni di diritto previdenziale e assicurativo', domande: '500', colore: 'bg-blue-300' },
+              { lettera: 'E', nome: 'Nozioni di diritto privato', domande: '400', colore: 'bg-blue-200' },
             ].map(m => (
               <div key={m.lettera} className="bg-white rounded-2xl p-5 text-center border border-gray-100 shadow-sm">
                 <div className={`w-10 h-10 ${m.colore} rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3`}>
