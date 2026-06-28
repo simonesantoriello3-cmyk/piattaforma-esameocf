@@ -23,5 +23,19 @@ export async function GET(req: NextRequest) {
     supabase.from('sessioni').select('*').order('created_at', { ascending: false }).limit(100),
   ])
 
-  return NextResponse.json({ profiles, acquisti, sessioni })
+  // Join manuale acquisti con profiles
+  const profileMap: Record<string, any> = {}
+  profiles?.forEach(p => { profileMap[p.id] = p })
+
+  const acquistiConProfilo = acquisti?.map(a => ({
+    ...a,
+    profiles: profileMap[a.user_id] || null
+  }))
+
+  const sessioniConProfilo = sessioni?.map(s => ({
+    ...s,
+    profiles: profileMap[s.user_id] || null
+  }))
+
+  return NextResponse.json({ profiles, acquisti: acquistiConProfilo, sessioni: sessioniConProfilo })
 }
