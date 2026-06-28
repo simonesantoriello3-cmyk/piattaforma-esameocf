@@ -133,6 +133,13 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <div className="mt-10 max-w-sm mx-auto">
+            <img 
+              src="/quiz-screenshot.png" 
+              alt="Screenshot quiz OCF" 
+              className="rounded-2xl shadow-xl border border-gray-100 w-full"
+            />
+          </div>
         </div>
       </section>
 
