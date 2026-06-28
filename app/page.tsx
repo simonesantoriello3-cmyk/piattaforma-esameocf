@@ -113,32 +113,36 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-3">Come funziona</h2>
           <p className="text-gray-500 text-center text-sm mb-10">
-            Un metodo di studio efficace, pensato per superare l'esame OCF al primo tentativo.
+            Un'interfaccia semplice e intuitiva, pensata per farti studiare in modo efficace.
           </p>
-          <div className="space-y-6 max-w-2xl mx-auto">
-            {[
-              { n: '1', titolo: 'Scegli la materia', desc: 'Seleziona quante domande fare per ogni materia. Inizia dal diritto finanziario che vale il 40% dell\'esame.' },
-              { n: '2', titolo: 'Rispondi alle domande', desc: '4 opzioni di risposta A/B/C/D, feedback immediato dopo ogni risposta con la spiegazione corretta.' },
-              { n: '3', titolo: 'Analizza i risultati', desc: 'Vedi dove sbagli di più per materia e argomento. Concentra lo studio dove sei più debole.' },
-              { n: '4', titolo: 'Simula l\'esame', desc: '60 domande in 85 minuti con punteggio reale. Devi raggiungere 80/100 per superarlo.' },
-            ].map(s => (
-              <div key={s.n} className="flex items-start gap-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-blue-600 font-bold text-sm">{s.n}</span>
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Screenshot */}
+            <div className="w-full md:w-1/2">
+              <img
+                src="/quiz-screenshot.png"
+                alt="Screenshot quiz OCF"
+                className="rounded-2xl shadow-xl border border-gray-100 w-full"
+              />
+            </div>
+            {/* Step */}
+            <div className="w-full md:w-1/2 space-y-6">
+              {[
+                { n: '1', titolo: 'Scegli la materia', desc: 'Seleziona quante domande fare per ogni materia con uno slider intuitivo.' },
+                { n: '2', titolo: 'Rispondi alle domande', desc: '4 opzioni di risposta, feedback immediato in verde o rosso dopo ogni risposta.' },
+                { n: '3', titolo: 'Analizza i risultati', desc: 'Vedi il punteggio finale, rivedi le domande sbagliate e monitora i tuoi progressi.' },
+                { n: '4', titolo: 'Simula l\'esame', desc: '60 domande in 85 minuti con punteggio reale. Devi raggiungere 80/100 per superarlo.' },
+              ].map(s => (
+                <div key={s.n} className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-600 font-bold text-sm">{s.n}</span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">{s.titolo}</h3>
+                    <p className="text-sm text-gray-500">{s.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{s.titolo}</h3>
-                  <p className="text-sm text-gray-500">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 max-w-sm mx-auto">
-            <img 
-              src="/quiz-screenshot.png" 
-              alt="Screenshot quiz OCF" 
-              className="rounded-2xl shadow-xl border border-gray-100 w-full"
-            />
+              ))}
+            </div>
           </div>
         </div>
       </section>
