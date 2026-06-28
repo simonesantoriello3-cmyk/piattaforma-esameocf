@@ -23,7 +23,6 @@ export async function GET(req: NextRequest) {
     supabase.from('sessioni').select('*').order('created_at', { ascending: false }).limit(100),
   ])
 
-  // Join manuale acquisti con profiles
   const profileMap: Record<string, any> = {}
   profiles?.forEach(p => { profileMap[p.id] = p })
 
