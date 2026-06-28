@@ -21,29 +21,21 @@ export default function AdminPage() {
 
   useEffect(() => {
     async function carica() {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user }, data: sessionData } = await supabase.auth.getUser()
       if (!user || user.email !== ADMIN_EMAIL) { router.push('/'); return }
       setAutenticato(true)
 
-      const { data: profilesData } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('created_at', { ascending: false })
+      const { data: { session } } = await supabase.auth.getSession()
+      const token = session?.access_token
 
-      const { data: acquistiData } = await supabase
-        .from('acquisti')
-        .select('*, profiles(email, nome)')
-        .order('created_at', { ascending: false })
+      const res = await fetch('/api/admin', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      const { profiles, acquisti, sessioni } = await res.json()
 
-      const { data: sessioniData } = await supabase
-        .from('sessioni')
-        .select('*, profiles(email, nome)')
-        .order('created_at', { ascending: false })
-        .limit(100)
-
-      setUtenti(profilesData || [])
-      setAcquisti(acquistiData || [])
-      setSessioni(sessioniData || [])
+      setUtenti(profiles || [])
+      setAcquisti(acquisti || [])
+      setSessioni(sessioni || [])
       setLoading(false)
     }
     carica()
