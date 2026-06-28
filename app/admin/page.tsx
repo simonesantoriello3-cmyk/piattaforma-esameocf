@@ -31,7 +31,9 @@ export default function AdminPage() {
       const res = await fetch('/api/admin', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
-      const { profiles, acquisti, sessioni } = await res.json()
+      const data = await res.json()
+      console.log('Admin data:', data)
+      const { profiles, acquisti, sessioni } = data
 
       setUtenti(profiles || [])
       setAcquisti(acquisti || [])
