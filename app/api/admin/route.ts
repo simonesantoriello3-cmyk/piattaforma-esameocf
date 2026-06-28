@@ -19,8 +19,8 @@ export async function GET(req: NextRequest) {
 
   const [{ data: profiles }, { data: acquisti }, { data: sessioni }] = await Promise.all([
     supabase.from('profiles').select('*').order('created_at', { ascending: false }),
-    supabase.from('acquisti').select('*, profiles(email, nome)').order('created_at', { ascending: false }),
-    supabase.from('sessioni').select('*, profiles(email, nome)').order('created_at', { ascending: false }).limit(100),
+    supabase.from('acquisti').select('*').order('created_at', { ascending: false }),
+    supabase.from('sessioni').select('*').order('created_at', { ascending: false }).limit(100),
   ])
 
   return NextResponse.json({ profiles, acquisti, sessioni })
