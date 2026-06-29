@@ -145,6 +145,16 @@ export async function POST(req: NextRequest) {
               <a href="mailto:info@formazioneocf.com" style="color:#2563eb;font-weight:600;">info@formazioneocf.com</a>
             </p>
           </div>
+
+          <!-- Trustpilot -->
+          <div style="margin-top:24px;background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:24px;text-align:center;">
+            <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#111827;">Ti è piaciuto il simulatore?</p>
+            <p style="margin:0 0 16px;font-size:13px;color:#6b7280;line-height:1.6;">Lascia una recensione su Trustpilot — ci aiuta tanto e richiede solo un minuto.</p>
+            <a href="https://www.trustpilot.com/review/formazioneocf.com"
+               style="display:inline-block;background-color:#00b67a;color:#ffffff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+              ⭐ Lascia una recensione
+            </a>
+          </div>
         </td></tr>
 
         <tr><td style="background-color:#f9fafb;border-radius:0 0 16px 16px;padding:20px;text-align:center;border-top:1px solid #e5e7eb;">
