@@ -54,13 +54,17 @@ export default function Navbar() {
     <nav className="bg-blue-50 border-b border-blue-100 px-6 py-4 relative">
       <div className="max-w-5xl mx-auto flex items-center justify-between">
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-1">
-          <div className="w-5 h-7 bg-blue-500 rounded-sm"></div>
-          <div className="w-5 h-7 bg-blue-800 rounded-sm" style={{ marginLeft: '2px' }}></div>
-          <span className="text-blue-600 font-bold text-xl ml-2">Formazione</span>
-          <span className="text-blue-900 font-bold text-xl">OCF</span>
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link href="/" className="flex items-center gap-1">
+            <div className="w-5 h-7 bg-blue-500 rounded-sm"></div>
+            <div className="w-5 h-7 bg-blue-800 rounded-sm" style={{ marginLeft: '2px' }}></div>
+            <span className="text-blue-600 font-bold text-xl ml-2">Formazione</span>
+            <span className="text-blue-900 font-bold text-xl">OCF</span>
+          </Link>
+          <Link href="/blog" className="hidden md:inline text-blue-700 hover:text-blue-900 text-sm font-medium transition-colors">
+            Blog
+          </Link>
+        </div>
 
         {/* Auth */}
         <div className="flex items-center gap-3">

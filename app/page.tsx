@@ -116,7 +116,6 @@ export default function HomePage() {
             Un'interfaccia semplice e intuitiva, pensata per farti studiare in modo efficace.
           </p>
           <div className="flex flex-col md:flex-row items-center gap-10">
-            {/* Screenshot */}
             <div className="w-full md:w-1/2">
               <img
                 src="/quiz-screenshot.png"
@@ -124,7 +123,6 @@ export default function HomePage() {
                 className="rounded-2xl shadow-xl border border-gray-100 w-full"
               />
             </div>
-            {/* Step */}
             <div className="w-full md:w-1/2 space-y-6">
               {[
                 { n: '1', titolo: 'Scegli la materia', desc: 'Seleziona quante domande fare per ogni materia con uno slider intuitivo.' },
@@ -187,6 +185,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* BLOG PREVIEW */}
+      <section className="bg-gray-50 py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">Dal blog</h2>
+          <p className="text-gray-500 text-center text-sm mb-10">Guide pratiche per prepararti al meglio.</p>
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {[
+              {
+                slug: 'esame-ocf-2026-guida-completa',
+                titolo: 'Esame OCF 2026: tutto quello che devi sapere prima di iscriverti',
+                desc: 'Sessioni, struttura della prova, punteggio e materie d\'esame: la guida completa.',
+                minuti: 7,
+              },
+              {
+                slug: 'materie-esame-ocf-come-studiarle',
+                titolo: 'Le materie dell\'esame OCF: come sono distribuite e da dove iniziare',
+                desc: 'Analisi delle 5 materie con il peso ufficiale di ciascuna e la strategia di studio.',
+                minuti: 6,
+              },
+            ].map(a => (
+              <Link key={a.slug} href={`/blog/${a.slug}`} className="group bg-white rounded-2xl p-6 border border-blue-100 hover:shadow-md hover:border-blue-300 transition-all">
+                <span className="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-full">{a.minuti} min</span>
+                <h3 className="font-bold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors text-sm leading-snug">{a.titolo}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed mb-3">{a.desc}</p>
+                <span className="text-blue-600 text-xs font-semibold">Leggi →</span>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/blog" className="text-blue-700 hover:text-blue-900 text-sm font-semibold underline underline-offset-4">Vedi tutti gli articoli →</Link>
+          </div>
+        </div>
+      </section>
+
       {/* RECENSIONI */}
       <section className="bg-white py-16 px-6">
         <div className="max-w-4xl mx-auto">
@@ -235,6 +267,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col gap-2">
             <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Informazioni</p>
+            <Link href="/blog" className="text-sm text-gray-500 hover:text-blue-700">Blog</Link>
             <Link href="/chi-siamo" className="text-sm text-gray-500 hover:text-blue-700">Chi siamo</Link>
             <Link href="/contatti" className="text-sm text-gray-500 hover:text-blue-700">Contatti</Link>
           </div>
