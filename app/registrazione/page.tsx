@@ -47,6 +47,18 @@ export default function Registrazione() {
         email,
         nome: nome.trim()
       })
+
+      // Invia il contatto a Brevo per l'email marketing automatica
+      try {
+        await fetch('/api/brevo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, nome: nome.trim() }),
+        })
+      } catch (brevoError) {
+        console.error('Errore invio a Brevo:', brevoError)
+      }
+
       setRegistrato(true)
     }
     setCaricamento(false)
