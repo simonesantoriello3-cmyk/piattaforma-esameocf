@@ -41,28 +41,28 @@ Per il 2026 l'OCF ha indetto **5 sessioni**, ciascuna con **2 appelli**, per un 
 
 Le date precise di ogni appello vengono pubblicate sul portale ufficiale organismocf.it e possono variare in base al numero di domande di partecipazione ricevute.
 
-## Come funziona il punteggio: non è una semplice percentuale
+## Come funziona il punteggio
 
-A differenza di molti altri esami, il punteggio OCF non si calcola semplicemente contando le risposte corrette su 60. La prova è composta da **54 quesiti**, divisi in due categorie:
+La prova si compone di **60 quesiti a risposta multipla**, da svolgere in **85 minuti**. Non tutti i quesiti valgono lo stesso punteggio:
 
-- **36 quesiti da 2 punti** (di cui 11 quesiti pratici, con scenari più articolati)
-- **18 quesiti da 1 punto** (nozioni dirette, definizioni)
+- **40 quesiti da 2 punti**, tra cui 12 quesiti pratici (richiedono di applicare un concetto a uno scenario concreto)
+- **20 quesiti da 1 punto** (nozioni dirette, definizioni)
 
-Per superare l'esame serve raggiungere **80 punti su 100**. Questo significa che le domande da 2 punti contano il doppio: rispondendo correttamente a tutte le 36 domande da 2 punti si arriva già a 80 punti, prima ancora di toccare quelle da 1 punto.
+Chi risponde correttamente a tutti i quesiti ottiene il punteggio massimo di **100/100**. Per superare l'esame serve raggiungere almeno **80 punti su 100**.
 
-Capire questa distinzione cambia la strategia il giorno dell'esame: se sei in ritardo con il tempo, conviene concentrarsi sulle domande da 2 punti piuttosto che perdere tempo su quelle da 1.
+A differenza di altri esami abilitativi come quello RUI, **l'OCF non penalizza le risposte errate**: una risposta sbagliata vale 0 punti, esattamente come una domanda lasciata senza risposta. Questo significa che conviene sempre rispondere a tutte le 60 domande, anche quando non si è del tutto sicuri: non c'è nulla da perdere a tentare.
 
 ## Le materie della prova
 
-I 54 quesiti sono distribuiti su 5 materie, con pesi molto diversi tra loro:
+I 60 quesiti sono distribuiti su 5 materie, con pesi molto diversi tra loro:
 
-- **Diritto del mercato finanziario e disciplina dei consulenti** — 24 quesiti
-- **Matematica finanziaria, mercati e strumenti** — 19 quesiti
-- **Diritto tributario del mercato finanziario** — 6 quesiti
-- **Previdenza e assicurazioni** — 6 quesiti
+- **Diritto del mercato finanziario e degli intermediari, Disciplina dei Consulenti Finanziari** — 24 quesiti
+- **Matematica finanziaria, mercati e strumenti, pianificazione, finanza comportamentale ed ESG** — 19 quesiti
+- **Diritto tributario riguardante il mercato finanziario** — 6 quesiti
+- **Diritto previdenziale e assicurativo** — 6 quesiti
 - **Diritto privato e commerciale** — 5 quesiti
 
-Diritto dei mercati e matematica finanziaria insieme valgono quasi tre quarti del punteggio totale. È una distribuzione che conviene tenere bene a mente quando si organizza lo studio.
+Diritto del mercato finanziario da solo vale il 40% dell'esame. Insieme alla matematica finanziaria, le due materie coprono **il 72% della prova**: è una distribuzione che conviene tenere bene a mente quando si organizza lo studio.
 
 ## Cosa succede se non superi l'esame
 
@@ -82,9 +82,9 @@ Per sostenere la prova è necessario un PC con webcam frontale e un dispositivo 
 
 ## Conclusione
 
-L'esame OCF richiede di conoscere bene non solo le materie, ma anche il meccanismo di punteggio: capire che le domande da 2 punti valgono il doppio aiuta a gestire meglio il tempo e a impostare una strategia di risposta efficace.
+L'esame OCF richiede di conoscere bene non solo le materie, ma anche il meccanismo di punteggio: capire che le domande da 2 punti valgono il doppio, e che non c'è penalità per le risposte errate, aiuta a impostare una strategia di risposta più serena ed efficace.
 
-Con una preparazione mirata sulle due materie principali — diritto dei mercati e matematica finanziaria — e un buon allenamento sulle domande pratiche, superare la prova alla prima sessione utile è un obiettivo realistico per la maggior parte dei candidati.
+Con una preparazione mirata sulle due materie principali — diritto dei mercati e matematica finanziaria, che insieme valgono quasi tre quarti del punteggio — superare la prova alla prima sessione utile è un obiettivo realistico per la maggior parte dei candidati.
     `
   },
   {
@@ -97,33 +97,33 @@ Con una preparazione mirata sulle due materie principali — diritto dei mercati
     contenuto: `
 ## Una distribuzione molto sbilanciata
 
-L'esame OCF si compone di 54 quesiti distribuiti su 5 materie, ma il peso di ciascuna è molto diverso. Conoscere questa distribuzione è il primo passo per organizzare lo studio in modo efficiente, evitando di dedicare lo stesso tempo a materie che valgono pesi completamente diversi nel punteggio finale.
+L'esame OCF si compone di 60 quesiti distribuiti su 5 materie, ma il peso di ciascuna è molto diverso. Conoscere questa distribuzione è il primo passo per organizzare lo studio in modo efficiente, evitando di dedicare lo stesso tempo a materie che valgono pesi completamente diversi nel punteggio finale.
 
 ## Le 5 materie della prova valutativa
 
-### A. Diritto del mercato finanziario e disciplina dei consulenti — 24 quesiti
+### Diritto del mercato finanziario e degli intermediari, Disciplina dei Consulenti Finanziari — 24 quesiti
 
-È la materia con il maggior peso, quasi la metà dei quesiti totali. Copre gli abusi di mercato, le OPA e l'appello al pubblico risparmio, i servizi e la trasparenza verso il cliente, la disciplina dell'Albo unico dei Consulenti Finanziari, la normativa antiriciclaggio, il funzionamento dei mercati, l'offerta fuori sede e le regole di vigilanza CONSOB e OCF. È la materia più normativa e richiede familiarità con il TUF (Testo Unico della Finanza) e i regolamenti attuativi.
+È la materia con il maggior peso, il 40% dei quesiti totali. Copre gli abusi di mercato, le OPA e l'appello al pubblico risparmio, gli emittenti e le società con azioni quotate, la gestione collettiva del risparmio, la disciplina dell'Albo unico dei Consulenti Finanziari, la normativa antiriciclaggio, la vigilanza su mercati e intermediari, l'offerta fuori sede e la trasparenza nei rapporti con i clienti. È la materia più normativa e richiede familiarità con il TUF (Testo Unico della Finanza) e i regolamenti attuativi.
 
-### B. Matematica finanziaria, mercati e strumenti — 19 quesiti
+### Matematica finanziaria, mercati e strumenti, pianificazione, finanza comportamentale ed ESG — 19 quesiti
 
 Seconda materia per numero di quesiti. Comprende la costruzione e l'analisi di portafogli, i fondi comuni di investimento, gli strumenti derivati (futures, opzioni, swap), i titoli azionari e obbligazionari, i prodotti strutturati, gli strumenti di mercato monetario, le tecniche di pianificazione finanziaria, la finanza comportamentale e gli investimenti ESG. È una materia tecnica che richiede di comprendere i meccanismi, non solo di memorizzare definizioni.
 
-### C. Diritto tributario del mercato finanziario — 6 quesiti
+### Diritto tributario riguardante il mercato finanziario — 6 quesiti
 
-Copre la tassazione del risparmio gestito e diretto e le imposte indirette sui redditi finanziari. Un numero contenuto di domande ma su un argomento molto specifico, che richiede di conoscere bene le aliquote e i regimi fiscali applicati ai diversi strumenti finanziari.
+Copre la tassazione del risparmio gestito e diretto e le imposte indirette sui redditi finanziari. Un numero contenuto di domande su un argomento molto specifico, che richiede di conoscere bene i regimi fiscali applicati ai diversi strumenti finanziari.
 
-### D. Previdenza e assicurazioni — 6 quesiti
+### Diritto previdenziale e assicurativo — 6 quesiti
 
-Materia che comprende i contratti assicurativi, i profili tecnici e fiscali delle polizze, le competenze IVASS, il sistema della previdenza obbligatoria e complementare, il TFR e le diverse tipologie di polizze assicurative. Argomento trasversale tra finanza e previdenza, utile anche per chi proviene dal settore assicurativo.
+Materia che comprende i contratti assicurativi, i profili tecnici e fiscali delle polizze, il sistema della previdenza obbligatoria e complementare, il TFR e le diverse tipologie di polizze assicurative. Argomento trasversale tra finanza e previdenza, utile anche per chi proviene dal settore assicurativo.
 
-### E. Diritto privato e commerciale — 5 quesiti
+### Diritto privato e commerciale — 5 quesiti
 
 La materia con il minor numero di quesiti. Copre le obbligazioni e i contratti, i diritti reali, il diritto dell'impresa e delle società, i titoli di credito e le operazioni straordinarie. Nozioni di base di diritto civile e commerciale, propedeutiche alla comprensione delle altre materie.
 
 ## Il 72% del punteggio in due sole materie
 
-Diritto del mercato finanziario e Matematica finanziaria insieme valgono **43 quesiti su 54**, circa il 72% del totale. Questo dato cambia completamente l'approccio allo studio: chi padroneggia bene queste due materie e ha una preparazione anche solo sufficiente sulle altre tre ha buone probabilità di superare l'esame. Chi le sottovaluta, invece, rischia di non farcela anche conoscendo perfettamente le materie minori.
+Diritto del mercato finanziario e Matematica finanziaria insieme valgono **43 quesiti su 60**, circa il 72% del totale. Questo dato cambia completamente l'approccio allo studio: chi padroneggia bene queste due materie e ha una preparazione anche solo sufficiente sulle altre tre ha buone probabilità di superare l'esame. Chi le sottovaluta, invece, rischia di non farcela anche conoscendo perfettamente le materie minori.
 
 ## Come distribuire il tempo di studio
 
@@ -132,19 +132,23 @@ Una distribuzione efficace del tempo, basata sul peso reale delle materie, è:
 - **Diritto del mercato finanziario**: 35% del tempo
 - **Matematica finanziaria**: 30% del tempo
 - **Diritto tributario**: 10% del tempo
-- **Previdenza e assicurazioni**: 10% del tempo
+- **Diritto previdenziale e assicurativo**: 10% del tempo
 - **Diritto privato e commerciale**: 10% del tempo
 - **Ripasso generale e simulazioni**: 5% del tempo
 
 ## Domande pratiche vs domande dirette
 
-Tra i 36 quesiti da 2 punti, 11 sono **quesiti pratici**: richiedono di applicare un concetto a uno scenario concreto, non solo di ricordare una definizione. Questi quesiti si trovano soprattutto nell'area di matematica finanziaria (calcolo di rendimenti, valutazione di portafogli) e nel diritto dei mercati (casi applicativi di normativa).
+Tra i 40 quesiti da 2 punti, 12 sono **quesiti pratici**: richiedono di applicare un concetto a uno scenario concreto, non solo di ricordare una definizione. Questi quesiti si trovano soprattutto nell'area di matematica finanziaria (calcolo di rendimenti, valutazione di portafogli) e nel diritto dei mercati (casi applicativi di normativa).
 
 Allenarsi su questo tipo di domande richiede un metodo diverso rispetto allo studio mnemonico: bisogna esercitarsi a ragionare sui dati di uno scenario, non solo a riconoscere la risposta giusta tra quattro opzioni.
 
 ## Come affrontare le materie minori
 
-Diritto tributario, previdenza e assicurazioni, e diritto privato valgono insieme solo 17 quesiti, ma rappresentano comunque punti importanti per superare la soglia. La strategia più efficiente è studiarle per concetti chiave e definizioni dirette, senza approfondire eccessivamente i dettagli tecnici: i quesiti su queste materie sono in prevalenza domande dirette da 1 punto.
+Diritto tributario, diritto previdenziale-assicurativo e diritto privato valgono insieme solo 17 quesiti, ma rappresentano comunque punti importanti per superare la soglia. La strategia più efficiente è studiarle per concetti chiave e definizioni dirette, senza approfondire eccessivamente i dettagli tecnici.
+
+## Nessuna penalità, quindi rispondi sempre
+
+A differenza di molti esami abilitativi, l'OCF non sottrae punti per le risposte errate. Una risposta sbagliata vale 0 punti, come una domanda lasciata in bianco. Questo significa che durante l'esame conviene **rispondere sempre a tutte le 60 domande**, anche quando non si è sicuri: non c'è alcun rischio nel tentare.
 
 **FormazioneOCF** include oltre 5.000 domande della banca dati ufficiale aggiornata, organizzate per le 5 aree tematiche del bando, con sistema di priorità sulle domande sbagliate per concentrare lo studio dove serve davvero.
     `
