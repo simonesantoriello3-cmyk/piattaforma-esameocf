@@ -20,6 +20,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FormazioneOCF — Preparati alla Prova Valutativa OCF",
   description: "La piattaforma di riferimento per prepararti alla prova valutativa OCF. Oltre 5.000 domande aggiornate, simulazioni complete e allenamento mirato per superare l'esame.",
+  alternates: {
+    canonical: 'https://formazioneocf.com',
+  },
   icons: {
     icon: '/favicon.svg',
   },
