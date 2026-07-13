@@ -163,17 +163,6 @@ export default async function ArticoloPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        <div className="mt-8 bg-gray-50 border border-gray-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-          <div className="text-3xl">⭐</div>
-          <div className="flex-1">
-            <p className="font-semibold text-gray-900 text-sm mb-1">Hai già usato FormazioneOCF?</p>
-            <p className="text-xs text-gray-500">Lascia una recensione su Trustpilot e aiuta altri candidati a scegliere la preparazione giusta.</p>
-          </div>
-          <a href="https://www.trustpilot.com/review/formazioneocf.com" target="_blank" rel="noopener noreferrer"
-            className="bg-[#00b67a] hover:bg-[#00a066] text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap flex-shrink-0">
-            Scrivi una recensione
-          </a>
-        </div>
       </section>
 
       <footer className="bg-blue-50 border-t border-blue-100 py-8 px-6 mt-8">

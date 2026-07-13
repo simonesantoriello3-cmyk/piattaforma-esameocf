@@ -221,32 +221,30 @@ export default function HomePage() {
 
       {/* RECENSIONI */}
       <section className="bg-white py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 text-center mb-3">
-            Cosa dicono i nostri utenti
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+            Le recensioni dei nostri utenti
           </h2>
-          <p className="text-gray-500 text-center text-sm mb-10">
-            Chi si è preparato con FormazioneOCF ha superato l'esame.
+          <p className="text-gray-500 text-sm mb-10">
+            Recensioni verificate e indipendenti su Trustpilot
           </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { nome: 'Marco R.', stelle: 5, testo: 'Ho superato l\'esame OCF al primo tentativo grazie alle simulazioni. Le domande sono identiche a quelle della prova ufficiale.', data: 'Marzo 2026' },
-              { nome: 'Giulia T.', stelle: 5, testo: 'Piattaforma intuitiva e completa. Le 5.000 domande coprono tutto il programma. Ho studiato 4 settimane e passato con 88/100.', data: 'Gennaio 2026' },
-              { nome: 'Alessandro M.', stelle: 5, testo: 'La simulazione con timer mi ha aiutato a gestire il tempo. 85 minuti per 60 domande non sono molti. Risultato: promosso!', data: 'Aprile 2026' },
-            ].map(r => (
-              <div key={r.nome} className="bg-white rounded-2xl p-6 shadow-sm border border-blue-100">
-                <div className="flex items-center gap-1 mb-3">
-                  {[...Array(r.stelle)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-lg">★</span>
-                  ))}
-                </div>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">"{r.testo}"</p>
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-900 text-sm">{r.nome}</span>
-                  <span className="text-xs text-gray-400">{r.data}</span>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-xl mx-auto rounded-3xl border border-blue-100 bg-blue-50/60 p-8 shadow-sm">
+            <div className="flex items-center justify-center gap-1 mb-5" aria-label="5 stelle Trustpilot">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className="text-[#00B67A] text-2xl leading-none">★</span>
+              ))}
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed mb-6">
+              Scopri cosa dicono gli utenti che hanno già provato la piattaforma.
+            </p>
+            <a
+              href="https://it.trustpilot.com/review/formazioneocf.com"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center justify-center rounded-xl bg-blue-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
+            >
+              Leggi le recensioni su Trustpilot →
+            </a>
           </div>
         </div>
       </section>
