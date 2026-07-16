@@ -1,6 +1,72 @@
+"use client"
+
+import { useState } from 'react'
 import Link from 'next/link'
 
+const OGGETTI = [
+  'Informazioni sul servizio',
+  'Richiesta fattura',
+  'Problema tecnico',
+  'Acquisto e pagamenti',
+  'Altro',
+]
+
 export default function ContattiPage() {
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    oggetto: OGGETTI[0],
+    messaggio: '',
+    honeypot: '',
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState({ type: '', message: '' })
+
+  function handleChange(event) {
+    const { name, value } = event.target
+    setFormData(current => ({ ...current, [name]: value }))
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+
+    setIsSubmitting(true)
+    setFeedback({ type: '', message: '' })
+
+    try {
+      const response = await fetch('/api/contatti', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Invio non riuscito. Riprova più tardi.')
+      }
+
+      setFeedback({
+        type: 'success',
+        message: 'Messaggio inviato! Ti risponderemo entro 24-48 ore',
+      })
+      setFormData({
+        nome: '',
+        email: '',
+        oggetto: OGGETTI[0],
+        messaggio: '',
+        honeypot: '',
+      })
+    } catch (error) {
+      setFeedback({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Si è verificato un errore durante l\'invio.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero con foto */}
@@ -79,7 +145,7 @@ export default function ContattiPage() {
                   {
                     q: 'Come posso richiedere la fattura?',
                     r: <>
-                      Puoi richiedere la fattura entro 24 ore dall'acquisto, scrivendo a <a href="mailto:info@formazionerui.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a> o tramite il form in questa pagina selezionando 'Richiesta fattura' come oggetto. Indica nel messaggio: nome e cognome, codice fiscale e indirizzo completo. Se sei un'azienda: ragione sociale, P.IVA e codice SDI o PEC.
+                      Puoi richiedere la fattura entro 24 ore dall&apos;acquisto, scrivendo a <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a> o tramite il form in questa pagina selezionando &apos;Richiesta fattura&apos; come oggetto. Indica nel messaggio: nome e cognome, codice fiscale e indirizzo completo. Se sei un&apos;azienda: ragione sociale, P.IVA e codice SDI o PEC.
                     </>,
                   },
                   { q: 'Posso avere un rimborso?', r: 'Consulta i nostri Termini e Condizioni per la politica di recesso.' },
@@ -96,55 +162,89 @@ export default function ContattiPage() {
           {/* Form contatto */}
           <div className="bg-gray-50 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Inviaci un messaggio</h2>
-            <div className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Nome e cognome</label>
                 <input
                   type="text"
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
                   placeholder="Mario Rossi"
                   className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="mario@email.com"
                   className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Oggetto</label>
-                <select className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
-                  <option>Informazioni sul servizio</option>
-                  <option>Richiesta fattura</option>
-                  <option>Problema tecnico</option>
-                  <option>Acquisto e pagamenti</option>
-                  <option>Altro</option>
+                <select
+                  name="oggetto"
+                  value={formData.oggetto}
+                  onChange={handleChange}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  required
+                >
+                  {OGGETTI.map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Messaggio</label>
                 <textarea
                   rows={5}
+                  name="messaggio"
+                  value={formData.messaggio}
+                  onChange={handleChange}
                   placeholder="Scrivi il tuo messaggio..."
                   className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white resize-none"
+                  required
                 />
               </div>
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               <p className="text-xs text-gray-400">
                 Inviando questo modulo accetti la nostra{' '}
                 <Link href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</Link>.
               </p>
-              <a
-                href="mailto:info@formazioneocf.com"
-                className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors text-center text-sm"
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="block w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors text-center text-sm"
               >
-                Invia messaggio →
-              </a>
-              <p className="text-xs text-gray-400 text-center">
-                Il pulsante aprirà il tuo client email predefinito.
-              </p>
-            </div>
+                {isSubmitting ? 'Invio in corso...' : 'Invia messaggio →'}
+              </button>
+              {feedback.message ? (
+                <p
+                  className={`text-sm text-center ${feedback.type === 'success' ? 'text-green-600' : 'text-red-600'}`}
+                  role="status"
+                >
+                  {feedback.message}
+                </p>
+              ) : null}
+            </form>
           </div>
 
         </div>
