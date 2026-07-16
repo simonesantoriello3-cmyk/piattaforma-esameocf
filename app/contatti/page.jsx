@@ -76,6 +76,12 @@ export default function ContattiPage() {
                   { q: 'Quanto dura l\'accesso?', r: '12 mesi dalla data di acquisto.' },
                   { q: 'Posso cambiare modulo?', r: 'Contattaci via email, valuteremo insieme la soluzione.' },
                   { q: 'I pagamenti sono sicuri?', r: 'Sì, utilizziamo Stripe con crittografia SSL.' },
+                  {
+                    q: 'Come posso richiedere la fattura?',
+                    r: <>
+                      Puoi richiedere la fattura entro 24 ore dall'acquisto, scrivendo a <a href="mailto:info@formazionerui.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a> o tramite il form in questa pagina selezionando 'Richiesta fattura' come oggetto. Indica nel messaggio: nome e cognome, codice fiscale e indirizzo completo. Se sei un'azienda: ragione sociale, P.IVA e codice SDI o PEC.
+                    </>,
+                  },
                   { q: 'Posso avere un rimborso?', r: 'Consulta i nostri Termini e Condizioni per la politica di recesso.' },
                 ].map(faq => (
                   <div key={faq.q} className="border-b border-blue-100 pb-3 last:border-0 last:pb-0">
@@ -111,6 +117,7 @@ export default function ContattiPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Oggetto</label>
                 <select className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                   <option>Informazioni sul servizio</option>
+                  <option>Richiesta fattura</option>
                   <option>Problema tecnico</option>
                   <option>Acquisto e pagamenti</option>
                   <option>Altro</option>
