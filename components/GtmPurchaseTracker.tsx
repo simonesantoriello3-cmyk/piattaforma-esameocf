@@ -18,14 +18,14 @@ export default function GtmPurchaseTracker({ acquisti }: GtmPurchaseTrackerProps
       const storageKey = `gtm_purchase_${sessionId}`
       
       if (!localStorage.getItem(storageKey)) {
-        if (typeof window !== 'undefined' && window.dataLayer) {
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
           // Cerca l'importo reale dall'ultimo acquisto o usa 29 come fallback
           const ultimoAcquisto = acquisti && acquisti.length > 0 ? acquisti[0] : null
           const importo = ultimoAcquisto?.importo !== undefined && ultimoAcquisto?.importo !== null
             ? Number(ultimoAcquisto.importo)
             : 29
 
-          window.dataLayer.push({
+          (window as any).dataLayer.push({
             event: 'purchase',
             value: importo,
             currency: 'EUR',
