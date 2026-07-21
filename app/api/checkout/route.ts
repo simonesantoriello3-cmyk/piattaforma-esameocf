@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       customer_email: email,
       line_items: [{ price: priceId, quantity: 1 }],
       metadata: { userId, modulo },
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard?pagamento=successo&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/acquisto?pagamento=annullato`,
     })
 
