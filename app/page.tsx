@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import BotoneAcquista from '@/components/BotoneAcquista'
+import { articoli } from '@/app/data/blog/articoli'
 
 export default function HomePage() {
+  const articoliRecenti = [...articoli]
+    .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
+    .slice(0, 3)
+
   return (
     <div className="min-h-screen bg-white">
 
@@ -190,25 +195,12 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">Dal blog</h2>
           <p className="text-gray-500 text-center text-sm mb-10">Guide pratiche per prepararti al meglio.</p>
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {[
-              {
-                slug: 'esame-ocf-2026-guida-completa',
-                titolo: 'Esame OCF 2026: tutto quello che devi sapere prima di iscriverti',
-                desc: 'Sessioni, struttura della prova, punteggio e materie d\'esame: la guida completa.',
-                minuti: 7,
-              },
-              {
-                slug: 'materie-esame-ocf-come-studiarle',
-                titolo: 'Le materie dell\'esame OCF: come sono distribuite e da dove iniziare',
-                desc: 'Analisi delle 5 materie con il peso ufficiale di ciascuna e la strategia di studio.',
-                minuti: 6,
-              },
-            ].map(a => (
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {articoliRecenti.map(a => (
               <Link key={a.slug} href={`/blog/${a.slug}`} className="group bg-white rounded-2xl p-6 border border-blue-100 hover:shadow-md hover:border-blue-300 transition-all">
                 <span className="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-full">{a.minuti} min</span>
                 <h3 className="font-bold text-gray-900 mt-3 mb-2 group-hover:text-blue-700 transition-colors text-sm leading-snug">{a.titolo}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed mb-3">{a.desc}</p>
+                <p className="text-xs text-gray-500 leading-relaxed mb-3">{a.descrizione}</p>
                 <span className="text-blue-600 text-xs font-semibold">Leggi →</span>
               </Link>
             ))}
