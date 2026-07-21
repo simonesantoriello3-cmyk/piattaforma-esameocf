@@ -11,8 +11,8 @@ export type Articolo = {
 export const articoli: Articolo[] = [
   {
     slug: 'simulatore-esame-ocf',
-    titolo: 'Simulatore Esame OCF: allenati con le 4.998 domande ufficiali della prova valutativa',
-    descrizione: 'Preparati alla prova valutativa OCF con il simulatore basato sulle 4.998 domande ufficiali: metodo di studio, punteggio, materie e piano di preparazione per i prossimi appelli.',
+    titolo: 'Simulatore Esame OCF: allenati con le 5.000 domande ufficiali della prova valutativa',
+    descrizione: 'Preparati alla prova valutativa OCF con il simulatore basato sulle 5.000 domande ufficiali: metodo di studio, punteggio, materie e piano di preparazione per i prossimi appelli.',
     data: '2026-07-21',
     minuti: 7,
     immagine: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1920&q=80',
@@ -21,7 +21,7 @@ export const articoli: Articolo[] = [
 
 La prova valutativa OCF si tiene quasi ogni mese, con l'eccezione di agosto e gennaio. Dopo la pausa estiva, i prossimi appelli utili sono previsti a settembre e ottobre 2026: una finestra strategica per chi vuole arrivare preparato senza ridursi all'ultimo.
 
-La banca dati ufficiale OCF con 4.998 quesiti è pubblica. Per questo, allenarsi sulle stesse domande esame OCF rappresenta il metodo più diretto per aumentare il punteggio e superare la prova con maggiore sicurezza.
+La banca dati ufficiale OCF con 5.000 quesiti è pubblica. Per questo, allenarsi sulle stesse domande esame OCF rappresenta il metodo più diretto per aumentare il punteggio e superare la prova con maggiore sicurezza.
 
 ## Come funziona l'esame OCF
 
@@ -44,9 +44,11 @@ La banca dati ufficiale è distribuita su 5 aree:
 - Matematica finanziaria (1.600)
 - Diritto tributario (500)
 - Diritto previdenziale (500)
-- Diritto privato (398)
+- Diritto privato (400)
 
-Le prime due materie coprono 3.600 quesiti su 4.998. In pratica, la parte più ampia della preparazione deve essere concentrata su Diritto del mercato finanziario e Matematica finanziaria, lasciando alle altre tre materie un lavoro mirato ma proporzionato al loro peso reale.
+Totale banca dati: 5.000 domande ufficiali.
+
+Le prime due materie coprono 3.600 domande su 5.000. In pratica, la parte più ampia della preparazione deve essere concentrata su Diritto del mercato finanziario e Matematica finanziaria, lasciando alle altre tre materie un lavoro mirato ma proporzionato al loro peso reale.
 
 ## I 3 errori di chi studia solo sulla teoria
 
@@ -58,7 +60,7 @@ Le prime due materie coprono 3.600 quesiti su 4.998. In pratica, la parte più a
 
 Il simulatore FormazioneOCF è progettato per replicare la dinamica reale della prova:
 
-- 4.998 domande ufficiali
+- 5.000 domande ufficiali
 - 4 risposte mescolate a ogni tentativo
 - algoritmo che ripropone con priorità le domande sbagliate
 - simulazione completa cronometrata
@@ -83,7 +85,7 @@ Con questo approccio, la preparazione alla prova valutativa OCF diventa progress
 
 ### Quante domande ha la banca dati ufficiale OCF?
 
-La banca dati ufficiale contiene 4.998 domande.
+La banca dati ufficiale contiene 5.000 domande.
 
 ### Qual è il punteggio minimo per superare la prova?
 
@@ -91,7 +93,7 @@ Il minimo è 80/100, con le domande pratiche che valgono 2 punti ciascuna.
 
 ### Il simulatore usa le domande vere dell'esame?
 
-Sì, il simulatore utilizza le 4.998 domande ufficiali pubblicate per la prova.
+Sì, il simulatore utilizza le 5.000 domande ufficiali pubblicate per la prova.
 
 ## Conclusione
 
