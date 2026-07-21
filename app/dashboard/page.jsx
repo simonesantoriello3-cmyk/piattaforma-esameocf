@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
+import GtmPurchaseTracker from '@/components/GtmPurchaseTracker'
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -61,6 +62,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <GtmPurchaseTracker />
 
       {/* Hero */}
       <section

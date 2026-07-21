@@ -17,12 +17,7 @@ export default function GtmPurchaseTracker() {
       if (localStorage.getItem(key)) return
 
       const w = window as any
-      if (!w.dataLayer) {
-        if (attempt < 3) {
-          timeoutId = setTimeout(() => pushPurchase(attempt + 1), 500)
-        }
-        return
-      }
+      w.dataLayer = w.dataLayer || []
 
       w.dataLayer.push({
         event: 'purchase',
