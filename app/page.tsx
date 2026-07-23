@@ -181,14 +181,16 @@ export default function HomePage() {
                     <span className="text-yellow-400">✓</span> {f}
                   </li>
                 ))}
-                <li className="flex items-start gap-2 text-sm text-blue-100 pt-1 border-t border-white/10 mt-2">
-                  <span className="text-yellow-400 text-base leading-none">🛡️</span>
-                  <span>
-                    <span className="font-semibold text-white">Garanzia Promosso o Riprovi Gratis</span>
-                    <span className="block text-blue-200 mt-1">Se non superi la prova, rinnoviamo l’accesso per altri 12 mesi gratis</span>
-                  </span>
-                </li>
               </ul>
+              <div className="rounded-lg border border-blue-300/40 bg-blue-500/20 px-3 py-2 mb-4">
+                <div className="flex items-start gap-2">
+                  <span className="text-base" aria-hidden="true">🛡️</span>
+                  <div>
+                    <p className="text-sm font-semibold text-blue-50">Garanzia Promosso o Riprovi Gratis</p>
+                    <p className="text-xs text-blue-100/90 mt-0.5">Se non superi la prova, rinnoviamo l’accesso per altri 12 mesi gratis</p>
+                  </div>
+                </div>
+              </div>
               <BotoneAcquista className="block w-full text-center bg-white text-blue-600 hover:bg-blue-50 font-bold py-3.5 rounded-xl transition-colors text-base">
                 Acquista ora →
               </BotoneAcquista>
