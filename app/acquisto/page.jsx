@@ -69,6 +69,16 @@ export default function AcquistoPage() {
           </ul>
         </div>
 
+        {/* Garanzia */}
+        <div className="rounded-xl border border-blue-200 bg-blue-50 px-5 py-3 mb-6">
+          <div className="flex items-center justify-center gap-3 text-center">
+            <span className="text-xl" aria-hidden="true">🛡️</span>
+            <p className="text-sm text-blue-800">
+              <span className="font-semibold">Garanzia Promosso o Riprovi Gratis:</span> se non superi la prova, rinnoviamo l'accesso per altri 12 mesi gratis
+            </p>
+          </div>
+        </div>
+
         {/* Checkbox consenso */}
         <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
           <label className="flex items-start gap-3 cursor-pointer">
