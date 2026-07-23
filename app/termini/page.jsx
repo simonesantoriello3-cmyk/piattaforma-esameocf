@@ -123,7 +123,22 @@ export default function TerminiPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">6. Proprietà intellettuale</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">6. Garanzia Promosso o Riprovi Gratis</h2>
+            <p>
+              Se l'utente non supera la prova valutativa OCF durante il periodo di validità
+              dell'abbonamento, ha diritto al rinnovo gratuito dell'accesso per ulteriori 12 mesi.
+            </p>
+            <p className="mt-3">
+              La richiesta va inviata a <a href="mailto:info@formazioneocf.com" className="text-blue-600 hover:underline">info@formazioneocf.com</a>{' '}
+              entro 30 giorni dalla pubblicazione dell’esito, allegando documentazione dell'esito negativo.
+            </p>
+            <p className="mt-3">
+              La garanzia è utilizzabile una sola volta per utente.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">7. Proprietà intellettuale</h2>
             <p>
               Tutti i contenuti presenti sulla piattaforma FormazioneOCF (testi, domande, grafica, codice)
               sono di proprietà di INSURHUB S.r.l. o concessi in licenza ai sensi della
@@ -134,7 +149,7 @@ export default function TerminiPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">7. Account utente</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">8. Account utente</h2>
             <p>
               L'utente è responsabile della riservatezza delle proprie credenziali di accesso ai sensi
               dell'<strong>art. 1218 c.c.</strong> L'account è strettamente personale e non cedibile a terzi.
@@ -144,7 +159,7 @@ export default function TerminiPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">8. Modifiche al servizio</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">9. Modifiche al servizio</h2>
             <p>
               INSURHUB S.r.l. si riserva il diritto di modificare, sospendere o interrompere
               il servizio FormazioneOCF in qualsiasi momento. In caso di modifiche sostanziali,
@@ -155,7 +170,7 @@ export default function TerminiPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">9. Legge applicabile e foro competente</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">10. Legge applicabile e foro competente</h2>
             <p>
               I presenti Termini e Condizioni sono regolati dalla <strong>legge italiana</strong>.
               Per qualsiasi controversia derivante dall'utilizzo della piattaforma, le parti eleggono
@@ -166,7 +181,7 @@ export default function TerminiPage() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">10. Contatti</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">11. Contatti</h2>
             <p>
               Per informazioni, reclami o assistenza:<br />
               <strong>INSURHUB S.r.l.</strong><br />

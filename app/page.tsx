@@ -70,7 +70,7 @@ export default function HomePage() {
             {[
               { emoji: '📚', titolo: 'Domande', desc: 'Oltre 5.000 domande aggiornate a gennaio 2026, divise per materia e argomento. Copre tutte le 5 aree del bando OCF.' },
               { emoji: '⏱', titolo: 'Simulazione reale', desc: "Simula l'esame con 60 domande in 85 minuti, punteggio 80/100 per superarlo, esattamente come la prova valutativa ufficiale." },
-              { emoji: '📊', titolo: 'Tracciamento progressi', desc: 'Monitora i tuoi errori per materia e concentrati dove sei più debole. La matematica e il diritto valgono il 72% dell\'esame.' },
+              { emoji: '📊', titolo: 'Tracciamento progressi', desc: 'Monitora i tuoi errori per materia e concentrati dove sei più debole. La matematica e il diritto valgono il 72% dell’esame.' },
             ].map(f => (
               <div key={f.titolo} className="bg-gray-50 rounded-2xl p-6">
                 <div className="text-3xl mb-3">{f.emoji}</div>
@@ -133,7 +133,7 @@ export default function HomePage() {
                 { n: '1', titolo: 'Scegli la materia', desc: 'Seleziona quante domande fare per ogni materia con uno slider intuitivo.' },
                 { n: '2', titolo: 'Rispondi alle domande', desc: '4 opzioni di risposta, feedback immediato in verde o rosso dopo ogni risposta.' },
                 { n: '3', titolo: 'Analizza i risultati', desc: 'Vedi il punteggio finale, rivedi le domande sbagliate e monitora i tuoi progressi.' },
-                { n: '4', titolo: 'Simula l\'esame', desc: '60 domande in 85 minuti con punteggio reale. Devi raggiungere 80/100 per superarlo.' },
+                { n: '4', titolo: 'Simula l’esame', desc: '60 domande in 85 minuti con punteggio reale. Devi raggiungere 80/100 per superarlo.' },
               ].map(s => (
                 <div key={s.n} className="flex items-start gap-4">
                   <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
@@ -172,7 +172,7 @@ export default function HomePage() {
                 {[
                   '5.000+ domande OCF',
                   'Simulazione 60 domande · 85 minuti',
-                  'Soglia 80/100 come l\'esame reale',
+                  'Soglia 80/100 come l’esame reale',
                   'Tutte e 5 le materie del bando',
                   'Aggiornato a gennaio 2026',
                   'Accesso illimitato per 12 mesi',
@@ -181,6 +181,13 @@ export default function HomePage() {
                     <span className="text-yellow-400">✓</span> {f}
                   </li>
                 ))}
+                <li className="flex items-start gap-2 text-sm text-blue-100 pt-1 border-t border-white/10 mt-2">
+                  <span className="text-yellow-400 text-base leading-none">🛡️</span>
+                  <span>
+                    <span className="font-semibold text-white">Garanzia Promosso o Riprovi Gratis</span>
+                    <span className="block text-blue-200 mt-1">Se non superi la prova, rinnoviamo l’accesso per altri 12 mesi gratis</span>
+                  </span>
+                </li>
               </ul>
               <BotoneAcquista className="block w-full text-center bg-white text-blue-600 hover:bg-blue-50 font-bold py-3.5 rounded-xl transition-colors text-base">
                 Acquista ora →
