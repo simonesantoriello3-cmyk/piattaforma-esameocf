@@ -31,12 +31,37 @@ export default function EsercitazionePage() {
         counts[m.id] = count || 0
       }))
 
-      const materieConCount = (materieData || []).map(m => ({ ...m, count: counts[m.id] }))
+      const { data: progressiData } = await supabase
+        .from('progressi')
+        .select('domanda_id')
+        .eq('user_id', user.id)
+
+      const domandeVisteIds = Array.from(new Set((progressiData || [])
+        .map(p => p.domanda_id)
+        .filter(Boolean)))
+
+      const viste = {}
+      await Promise.all((materieData || []).map(async m => {
+        if (domandeVisteIds.length === 0) {
+          viste[m.id] = 0
+          return
+        }
+
+        const { count } = await supabase
+          .from('domande')
+          .select('id', { count: 'exact', head: true })
+          .eq('materia_id', m.id)
+          .in('id', domandeVisteIds)
+
+        viste[m.id] = count || 0
+      }))
+
+      const materieConCount = (materieData || []).map(m => ({ ...m, count: counts[m.id], viste: viste[m.id] || 0 }))
       setMaterie(materieConCount)
 
       const initSelezioni = {}
       materieConCount.forEach(m => {
-        initSelezioni[m.id] = { numero: 0, prioritaSbagliate: false }
+        initSelezioni[m.id] = { numero: 0, prioritaSbagliate: false, prioritaNuove: false }
       })
       setSelezioni(initSelezioni)
       setLoading(false)
@@ -56,7 +81,7 @@ export default function EsercitazionePage() {
   function avvia() {
     const selezioneArray = Object.entries(selezioni)
       .filter(([_, v]) => v.numero > 0)
-      .map(([id, v]) => ({ materiaId: id, numero: v.numero, prioritaSbagliate: v.prioritaSbagliate }))
+      .map(([id, v]) => ({ materiaId: id, numero: v.numero, prioritaSbagliate: v.prioritaSbagliate, prioritaNuove: v.prioritaNuove }))
 
     const params = new URLSearchParams({
       modalita: 'esercitazione',
@@ -93,7 +118,8 @@ export default function EsercitazionePage() {
           <CardMateria
             key={m.id}
             materia={m}
-            selezione={selezioni[m.id] || { numero: 0, prioritaSbagliate: false }}
+            viste={m.viste}
+            selezione={selezioni[m.id] || { numero: 0, prioritaSbagliate: false, prioritaNuove: false }}
             onChange={aggiorna}
           />
         ))}
@@ -118,8 +144,11 @@ export default function EsercitazionePage() {
   )
 }
 
-function CardMateria({ materia, selezione, onChange }) {
+function CardMateria({ materia, selezione, onChange, viste }) {
   const preset = [5, 10, 20, 50].filter(v => v <= materia.count)
+  const visteCount = Number(viste || 0)
+  const percentuale = materia.count > 0 ? Math.round((visteCount / materia.count) * 100) : 0
+  const mostraViste = visteCount > 0
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
@@ -128,14 +157,41 @@ function CardMateria({ materia, selezione, onChange }) {
         <span className="text-xs text-gray-400 flex-shrink-0">{materia.count} disponibili</span>
       </div>
 
-      <label className="flex items-center gap-2 text-xs text-gray-500 mb-4 cursor-pointer">
+      {mostraViste && (
+        <div className="mb-3">
+          <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+            <span>Viste:</span>
+            <span>{visteCount}/{materia.count} ({percentuale}%)</span>
+          </div>
+          <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-blue-500 rounded-full" style={{ width: `${Math.min(percentuale, 100)}%` }} />
+          </div>
+        </div>
+      )}
+
+      <label className="flex items-center gap-2 text-xs text-gray-500 mb-3 cursor-pointer">
         <input
           type="checkbox"
-          checked={selezione.prioritaSbagliate}
+          checked={Boolean(selezione.prioritaSbagliate)}
           onChange={e => onChange(materia.id, 'prioritaSbagliate', e.target.checked)}
           className="rounded accent-blue-600"
         />
         Dai priorità alle domande sbagliate più spesso
+      </label>
+
+      <label className="flex items-center gap-2 text-xs text-gray-500 mb-4 cursor-pointer">
+        <input
+          type="checkbox"
+          checked={Boolean(selezione.prioritaNuove)}
+          onChange={e => onChange(materia.id, 'prioritaNuove', e.target.checked)}
+          className="rounded accent-blue-600"
+        />
+        <span className="flex items-center gap-1">
+          Dai priorità a domande non ancora viste
+          {visteCount > 0 && (
+            <span className="text-[10px] text-gray-400">({materia.count - visteCount} nuove)</span>
+          )}
+        </span>
       </label>
 
       <div className="flex flex-wrap gap-2 mb-3">

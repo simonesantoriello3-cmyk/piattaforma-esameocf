@@ -93,12 +93,31 @@ function QuizInner() {
       } else {
         // Esercitazione
         const selezione = JSON.parse(params.get('selezione') || '[]')
+        const haPrioritaNuove = selezione.some(sel => sel.prioritaNuove)
+        let domandeVisteIds = new Set()
+
+        if (haPrioritaNuove) {
+          const { data: progressi } = await supabase
+            .from('progressi')
+            .select('domanda_id')
+            .eq('user_id', user.id)
+
+          domandeVisteIds = new Set((progressi || []).map(p => p.domanda_id).filter(Boolean))
+        }
+
         for (const sel of selezione) {
           const { data } = await supabase
             .from('domande')
             .select('id, testo, risposta_a, risposta_b, risposta_c, risposta_d, risposta_corretta, pratico, materia:materie(id, nome)')
             .eq('materia_id', sel.materiaId)
           let pool = data || []
+          if (sel.prioritaNuove && haPrioritaNuove) {
+            const poolNuove = pool.filter(d => !domandeVisteIds.has(d.id))
+
+            if (poolNuove.length >= sel.numero) {
+              pool = poolNuove
+            }
+          }
           if (sel.prioritaSbagliate && domandeErroriFrequenti.length > 0) {
             const sbagliate = pool.filter(d => domandeErroriFrequenti.includes(d.id))
             const altre = pool.filter(d => !domandeErroriFrequenti.includes(d.id))
