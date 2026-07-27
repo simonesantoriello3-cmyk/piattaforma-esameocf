@@ -40,21 +40,11 @@ export default function EsercitazionePage() {
         .map(p => p.domanda_id)
         .filter(Boolean)))
 
+      const { data: visteData } = await supabase
+        .rpc('conta_viste_per_materia', { p_user_id: user.id })
+
       const viste = {}
-      await Promise.all((materieData || []).map(async m => {
-        if (domandeVisteIds.length === 0) {
-          viste[m.id] = 0
-          return
-        }
-
-        const { count } = await supabase
-          .from('domande')
-          .select('id', { count: 'exact', head: true })
-          .eq('materia_id', m.id)
-          .in('id', domandeVisteIds)
-
-        viste[m.id] = count || 0
-      }))
+      ;(visteData || []).forEach(r => { viste[r.materia_id] = Number(r.viste) })
 
       const materieConCount = (materieData || []).map(m => ({ ...m, count: counts[m.id], viste: viste[m.id] || 0 }))
       setMaterie(materieConCount)
