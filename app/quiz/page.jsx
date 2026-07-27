@@ -339,7 +339,9 @@ function QuizInner() {
               disabled={confermata}
               className={classeOpzione(lettera)}
             >
-              <span className="w-7 h-7 rounded-full border-2 border-current flex-shrink-0 mt-0.5" aria-hidden="true" />
+              <span className="w-7 h-7 rounded-full border-2 border-current flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                {['A','B','C','D'][domanda.opzioni.indexOf(domanda.opzioni.find(o => o.lettera === lettera))]}
+              </span>
               <span className="text-sm leading-relaxed">{testo}</span>
               {confermata && lettera === domanda.letteraCorretta && <span className="ml-auto text-green-600 text-lg">✓</span>}
               {confermata && lettera === selezionata && lettera !== domanda.letteraCorretta && <span className="ml-auto text-red-500 text-lg">✗</span>}
