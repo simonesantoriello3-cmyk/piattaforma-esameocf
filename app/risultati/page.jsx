@@ -30,7 +30,7 @@ function RisultatiInner() {
       let punteggio = 10 // punteggio base
       parsed.domande.forEach(d => {
         if (d.rispostaUtente === d.letteraCorretta) {
-          punteggio += d.pratico ? 2 : 1
+          punteggio += d.punti || (d.pratico ? 2 : 1)
         }
         // Nessuna penalità per risposta errata
       })
@@ -69,7 +69,7 @@ function RisultatiInner() {
   let punteggio = 10
   domande.forEach(d => {
     if (d.rispostaUtente === d.letteraCorretta) {
-      punteggio += d.pratico ? 2 : 1
+      punteggio += d.punti || (d.pratico ? 2 : 1)
     }
   })
   punteggio = Math.min(punteggio, 100)
@@ -144,7 +144,7 @@ function RisultatiInner() {
 
           {modalita === 'simulazione' && (
             <div className="mt-4 bg-blue-50 rounded-xl p-3 text-xs text-blue-700 text-center">
-              <strong>Punteggio OCF:</strong> 10 punti base · +2 per domande pratiche · +1 per domande teoriche · nessuna penalità
+              <strong>Punteggio OCF:</strong> 10 punti di partenza · 40 domande da 2 punti · 20 domande da 1 punto · nessuna penalità
             </div>
           )}
         </div>
@@ -198,7 +198,7 @@ function RisultatiInner() {
                       <p className="text-sm text-gray-800 leading-snug line-clamp-2">{d.testo}</p>
                       <div className="flex items-center gap-2 mt-0.5">
                         {d.materia && <span className="text-xs text-gray-400">{d.materia}</span>}
-                        {d.pratico && <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-semibold">2pt</span>}
+                        {d.punti === 2 && <span className="text-xs bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-semibold">2pt</span>}
                       </div>
                     </div>
                     <span className="text-gray-300 text-sm flex-shrink-0 ml-2">{isAperta ? '▲' : '▼'}</span>
@@ -211,7 +211,6 @@ function RisultatiInner() {
                         const isErr = isScelta && !isGiusta
                         return (
                           <div key={lettera} className={`flex items-start gap-2 px-3 py-2 rounded-lg text-sm border ${isGiusta ? 'bg-green-50 border-green-300 text-green-800' : isErr ? 'bg-red-50 border-red-300 text-red-700' : 'bg-gray-50 border-gray-200 text-gray-500'}`}>
-                            <span className="font-bold flex-shrink-0 w-4">{lettera}.</span>
                             <span className="flex-1 leading-snug">{testo}</span>
                             {isGiusta && <span className="ml-auto text-green-600 font-bold">✓</span>}
                             {isErr && <span className="ml-auto text-red-500 font-bold">✗</span>}

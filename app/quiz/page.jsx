@@ -86,7 +86,7 @@ function QuizInner() {
           if (!materia) return
           const { data } = await supabase
             .from('domande')
-            .select('id, testo, risposta_a, risposta_b, risposta_c, risposta_d, risposta_corretta, materia:materie(id, nome)')
+            .select('id, testo, risposta_a, risposta_b, risposta_c, risposta_d, risposta_corretta, pratico, materia:materie(id, nome)')
             .eq('materia_id', materia.id)
           if (data) tuttiDomande.push(...shuffleArray(data).slice(0, d.n))
         }))
@@ -96,7 +96,7 @@ function QuizInner() {
         for (const sel of selezione) {
           const { data } = await supabase
             .from('domande')
-            .select('id, testo, risposta_a, risposta_b, risposta_c, risposta_d, risposta_corretta, materia:materie(id, nome)')
+            .select('id, testo, risposta_a, risposta_b, risposta_c, risposta_d, risposta_corretta, pratico, materia:materie(id, nome)')
             .eq('materia_id', sel.materiaId)
           let pool = data || []
           if (sel.prioritaSbagliate && domandeErroriFrequenti.length > 0) {
@@ -115,7 +115,22 @@ function QuizInner() {
         const { opzioni, letteraCorretta } = mescolaOpzioni(d)
         return { ...d, opzioni, letteraCorretta }
       })
-      setDomande(arricchite)
+
+      const arricchiteConPunti = modalita === 'simulazione'
+        ? (() => {
+            const duePuntiIds = new Set()
+            const pratiche = arricchite.filter(d => d.pratico)
+            pratiche.forEach(d => duePuntiIds.add(d.id))
+
+            const altre = arricchite.filter(d => !d.pratico)
+            const altreMescolate = shuffleArray(altre)
+            altreMescolate.slice(0, Math.max(0, 40 - duePuntiIds.size)).forEach(d => duePuntiIds.add(d.id))
+
+            return arricchite.map(d => ({ ...d, punti: duePuntiIds.has(d.id) ? 2 : 1 }))
+          })()
+        : arricchite.map(d => ({ ...d, punti: 1 }))
+
+      setDomande(arricchiteConPunti)
       setLoading(false)
     }
     carica()
@@ -196,6 +211,7 @@ function QuizInner() {
         rispostaUtente: (r || risposte)[d.id] || null,
         materia: d.materia?.nome || '',
         pratico: d.pratico || false,
+        punti: d.punti || 1,
       })),
       modalita, soglia, minuti, secondiImpiegati,
       data: new Date().toISOString(),
@@ -323,9 +339,7 @@ function QuizInner() {
               disabled={confermata}
               className={classeOpzione(lettera)}
             >
-              <span className="w-7 h-7 rounded-full border-2 border-current flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                {lettera}
-              </span>
+              <span className="w-7 h-7 rounded-full border-2 border-current flex-shrink-0 mt-0.5" aria-hidden="true" />
               <span className="text-sm leading-relaxed">{testo}</span>
               {confermata && lettera === domanda.letteraCorretta && <span className="ml-auto text-green-600 text-lg">✓</span>}
               {confermata && lettera === selezionata && lettera !== domanda.letteraCorretta && <span className="ml-auto text-red-500 text-lg">✗</span>}
@@ -338,7 +352,7 @@ function QuizInner() {
           <div className={`rounded-xl px-5 py-4 mb-6 border text-sm font-medium ${selezionata === domanda.letteraCorretta ? 'bg-green-50 border-green-300 text-green-800' : 'bg-red-50 border-red-300 text-red-800'}`}>
             {selezionata === domanda.letteraCorretta
               ? '✓ Risposta corretta!'
-              : `✗ Risposta errata. Corretta: ${domanda.letteraCorretta} — ${domanda.opzioni.find(o => o.lettera === domanda.letteraCorretta)?.testo}`}
+              : `✗ Risposta errata. Corretta: ${domanda.opzioni.find(o => o.lettera === domanda.letteraCorretta)?.testo}`}
           </div>
         )}
 
