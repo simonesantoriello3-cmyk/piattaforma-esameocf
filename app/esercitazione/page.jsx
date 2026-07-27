@@ -81,7 +81,7 @@ export default function EsercitazionePage() {
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-blue-900/70"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10">
           <h1 className="text-3xl font-bold text-white mb-2">Esercitazione libera</h1>
           <p className="text-white/80 text-sm">Scegli quante domande fare per ogni materia.</p>
