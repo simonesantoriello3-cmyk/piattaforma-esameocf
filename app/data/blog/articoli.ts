@@ -29,10 +29,12 @@ La prova valutativa OCF prevede 60 domande da completare in 85 minuti. La soglia
 
 Il punteggio è calcolato così:
 
-- 10 punti base
-- 2 punti per ogni domanda pratica corretta
-- 1 punto per ogni domanda teorica corretta
-- nessuna penalità per le risposte errate
+- punteggio di partenza: 10 punti
+- 40 domande valgono 2 punti ciascuna, di cui 12 di natura pratica e 28 teoriche
+- 20 domande valgono 1 punto ciascuna
+- nessuna penalità per risposte errate o omesse
+- punteggio massimo: 100
+- soglia di superamento: 80/100
 
 Il dettaglio che molti candidati trascurano è che le domande pratiche valgono il doppio rispetto a quelle teoriche. Questo elemento cambia in modo concreto la strategia di preparazione: nel quiz esame OCF non basta memorizzare nozioni, bisogna allenarsi su applicazioni pratiche e gestione del tempo.
 
@@ -64,7 +66,7 @@ Il simulatore FormazioneOCF è progettato per replicare la dinamica reale della 
 - 4 risposte mescolate a ogni tentativo
 - algoritmo che ripropone con priorità le domande sbagliate
 - simulazione completa cronometrata
-- punteggio calcolato come nell'esame reale (pratiche 2 punti, teoriche 1 punto)
+- punteggio calcolato come nell'esame reale: 40 domande da 2 punti, 20 da 1 punto, nessuna penalità e soglia a 80/100
 - statistiche per materia
 
 <img src="/quiz-screenshot.png" alt="Anteprima simulatore quiz esame OCF" style="margin-top: 12px; border-radius: 16px; border: 1px solid #e5e7eb;" />
@@ -89,7 +91,7 @@ La banca dati ufficiale contiene 5.000 domande.
 
 ### Qual è il punteggio minimo per superare la prova?
 
-Il minimo è 80/100, con le domande pratiche che valgono 2 punti ciascuna.
+Il minimo è 80/100: il punteggio massimo è 100, con 40 domande da 2 punti e 20 da 1 punto, senza penalità per risposte errate o omesse.
 
 ### Il simulatore usa le domande vere dell'esame?
 
