@@ -106,8 +106,8 @@ Puoi accedere al piano unico da 29 euro IVA inclusa con validità 12 mesi dalla 
   },
   {
     slug: 'esame-ocf-2026-guida-completa',
-    titolo: 'Esame OCF 2026: tutto quello che devi sapere prima di iscriverti',
-    descrizione: 'Sessioni, struttura della prova, punteggio e materie d\'esame: la guida completa e aggiornata per chi vuole iscriversi all\'Albo dei Consulenti Finanziari.',
+    titolo: 'Esame OCF 2026: Guida Completa alla Prova Valutativa',
+    descrizione: 'Prova valutativa OCF 2026: 60 domande in 85 minuti, soglia 80/100. Materie, criteri di punteggio, date degli appelli e come prepararsi con il simulatore.',
     data: '2026-01-20',
     minuti: 7,
     immagine: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80',
