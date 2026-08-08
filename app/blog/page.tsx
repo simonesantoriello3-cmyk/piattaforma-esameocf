@@ -5,8 +5,8 @@ import { articoli } from '@/app/data/blog/articoli'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Blog — FormazioneOCF',
-  description: "Guide e consigli per superare l'esame OCF: materie, struttura della prova, punteggio e tutto quello che devi sapere.",
+  title: 'Esame OCF 2026: Guida Completa alla Prova Valutativa',
+  description: "60 domande, 85 minuti, soglia 80/100. Tutto sulla prova valutativa OCF 2026: materie, punteggio, date degli appelli e come prepararsi con il simulatore ufficiale.",
 }
 
 export default function BlogPage() {
