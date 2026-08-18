@@ -106,9 +106,9 @@ Puoi accedere al piano unico da 29 euro IVA inclusa con validità 12 mesi dalla 
   },
   {
     slug: 'esame-ocf-2026-guida-completa',
-    titolo: 'Esame OCF 2026: Guida Completa alla Prova Valutativa',
-    descrizione: 'Prova valutativa OCF 2026: 60 domande in 85 minuti, soglia 80/100. Materie, criteri di punteggio, date degli appelli e come prepararsi con il simulatore.',
-    data: '2026-01-20',
+    titolo: 'Esame OCF 2026: Guida Completa alla Prova Valutativa — Date, Materie e Punteggio',
+    descrizione: 'Prova valutativa OCF 2026: 60 domande in 85 minuti, soglia 80/100. Prossimi appelli settembre e ottobre 2026. Materie, punteggio e come prepararsi con il simulatore ufficiale.',
+    data: '2026-08-18',
     minuti: 7,
     immagine: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80',
     contenuto: `
@@ -159,6 +159,14 @@ I 60 quesiti sono distribuiti su 5 materie, con pesi molto diversi tra loro:
 
 Diritto del mercato finanziario da solo vale il 40% dell'esame. Insieme alla matematica finanziaria, le due materie coprono **il 72% della prova**: è una distribuzione che conviene tenere bene a mente quando si organizza lo studio.
 
+## I prossimi appelli: settembre e ottobre 2026
+
+Dopo la pausa di agosto, la **Sessione IV** della prova valutativa OCF prevede due appelli a **settembre e ottobre 2026**. È la finestra più strategica per chi vuole ottenere l'abilitazione entro fine anno.
+
+Le iscrizioni a ciascun appello aprono generalmente 4-6 settimane prima della data della prova, sul portale ufficiale organismocf.it. Le date precise vengono pubblicate dall'OCF con anticipo: conviene monitorare il portale a partire dalla prima settimana di agosto.
+
+Chi inizia la preparazione adesso ha 6-8 settimane disponibili — un tempo sufficiente per coprire tutta la banca dati con metodo, puntando a simulazioni stabili sopra 85/100 nelle ultime due settimane prima dell'appello.
+
 ## Cosa succede se non superi l'esame
 
 Se non superi la prova, puoi ripeterla quante volte vuoi, senza limiti. L'unico vincolo è temporale: ogni nuovo tentativo richiede una nuova iscrizione, il pagamento del contributo e il rispetto delle finestre delle sessioni successive.
@@ -174,6 +182,23 @@ L'iscrizione avviene esclusivamente tramite l'**area riservata del portale OCF**
 5. Invio della domanda entro l'orario di chiusura indicato per l'appello scelto
 
 Per sostenere la prova è necessario un PC con webcam frontale e un dispositivo mobile dotato di telecamera, secondo i requisiti tecnici pubblicati nel bando.
+
+## Domande frequenti sull'esame OCF
+
+### Quando si tiene il prossimo esame OCF?
+I prossimi appelli sono previsti nella Sessione IV di settembre e ottobre 2026. Le date precise vengono pubblicate sul portale ufficiale organismocf.it.
+
+### Come ci si iscrive alla prova valutativa OCF?
+L'iscrizione avviene esclusivamente online sul portale OCF (organismocf.it), previa registrazione. Serve un documento di identità in corso di validità e il pagamento del contributo tramite PagoPA.
+
+### Quante domande ha la banca dati ufficiale OCF?
+La banca dati ufficiale contiene 5.000 domande distribuite sulle 5 materie del bando.
+
+### Cosa succede se non si supera la prova valutativa?
+Si può ripetere l'esame nelle sessioni successive senza limiti di tentativi. Ogni nuovo tentativo richiede una nuova iscrizione e il pagamento del contributo.
+
+### Il simulatore usa le domande vere dell'esame?
+Sì, FormazioneOCF utilizza le 5.000 domande ufficiali pubblicate dall'OCF, con punteggio calcolato secondo le regole reali della prova.
 
 ## Conclusione
 
