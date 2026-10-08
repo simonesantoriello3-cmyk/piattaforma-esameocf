@@ -15,7 +15,7 @@ export default function TerminiPage() {
         <div className="absolute inset-0 bg-black/65"></div>
         <div className="relative z-10 max-w-2xl mx-auto">
           <h1 className="text-4xl font-bold text-white mb-3">Termini e Condizioni</h1>
-          <p className="text-white/70 text-sm">Ultimo aggiornamento: giugno 2026</p>
+          <p className="text-white/70 text-sm">Ultimo aggiornamento: ottobre 2026</p>
         </div>
       </section>
 
@@ -54,7 +54,7 @@ export default function TerminiPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">3. Acquisto e pagamento</h2>
             <p>I piani disponibili sono:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
-              <li><strong>Simulatore OCF Completo</strong> — €29,00 IVA inclusa — validità 12 mesi</li>
+              <li><strong>Simulatore OCF Completo</strong> — €39,00 IVA inclusa — validità 12 mesi</li>
             </ul>
             <p className="mt-3">
               I pagamenti vengono processati in modo sicuro tramite <strong>Stripe Inc.</strong>
