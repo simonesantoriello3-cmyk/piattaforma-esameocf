@@ -161,6 +161,9 @@ export default function HomePage() {
           </p>
           <div className="max-w-sm mx-auto">
             <div className="bg-blue-600 rounded-2xl p-8 text-center relative">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">
+                OFFERTA LANCIO
+              </span>
               <h3 className="font-bold text-white text-xl mb-1">Simulatore OCF Completo</h3>
               <p className="text-blue-200 text-sm mb-6">5.000+ domande · 5 materie · Aggiornato gennaio 2026</p>
               <p className="text-5xl font-bold text-white mb-1">€39</p>

@@ -51,7 +51,7 @@ export default function AcquistoPage() {
           </span>
           <h3 className="font-bold text-white text-xl mb-1">Simulatore OCF Completo</h3>
           <p className="text-blue-200 text-sm mb-6">5.000+ domande · 5 materie · Aggiornato gennaio 2026</p>
-          <p className="text-5xl font-bold text-white mb-1">€29</p>
+          <p className="text-5xl font-bold text-white mb-1">€39</p>
           <p className="text-blue-200 text-sm mb-8">IVA inclusa · validità 12 mesi</p>
           <ul className="space-y-3 mb-8 text-left">
             {[
@@ -104,7 +104,7 @@ export default function AcquistoPage() {
           disabled={!consenso || loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold py-4 rounded-xl transition-colors text-lg"
         >
-          {loading ? 'Reindirizzamento...' : 'Acquista Simulatore OCF — €29'}
+          {loading ? 'Reindirizzamento...' : 'Acquista Simulatore OCF — €39'}
         </button>
 
         <div className="text-center mt-4 space-y-1">
